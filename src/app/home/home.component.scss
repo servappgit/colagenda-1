@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@700&display=swap');
+@font-face {
+    font-family: noah;
+    src: url(../../assets/fonts/noah-regular.ttf) format("opentype");
+  }
+@keyframes fadeIn{
+    to{
+      opacity:1;
+    }
+  }
+
+
+  /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 901px) {
+}
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 900px) {
+
+  }

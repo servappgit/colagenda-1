@@ -1,0 +1,42 @@
+<div class="div" style="background-image: url(../../../assets/fondoazulservrepetido.jpg);background-size: 100%;">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Log In </h2>
+      <h2 class="inactive underlineHover">Sign Up </h2>
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/Intro-SERV-8.gif" style="filter: invert(0.5) brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5);" id="icon" alt="User Icon" />
+      </div>
+      <div class="row" style="margin-bottom: 30px;align-items: center;">
+        <div class="col-12">
+          <button  class="btn btn-block btn-light" style="width: 100%;padding: 0px;" > <img src="../../../assets/googlelogin.png" ></button>
+
+        </div>
+        <div class="col-12">
+          <button  class="btn btn-block btn-light" style="width: 100%;padding: 0px;" > <img src="../../../assets/loginfacebook.png" style="width: 250px"></button>
+
+        </div>
+    </div>
+
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+
+        <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="login" [(ngModel)]="UserEmail" placeholder="Email">
+        <input type="text" id="password" class="fadeIn third" name="login" [(ngModel)]="UserPassword" placeholder="Password">
+        <button type="submit" (click)="loginemail()" class="btn btn-secondary" style="width: 85%;height: 55px;margin-top: 5px;" >Log In</button>
+      </form>
+
+        <a class="text-primary" href="#">Forgot Password?</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="div">
+  <img src="../../../assets/appscoimagen.jpg" style="display:block;margin:auto" width=50% alt="">
+</div>

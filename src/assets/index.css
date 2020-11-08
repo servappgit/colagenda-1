@@ -1,0 +1,505 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@700&display=swap');
+
+@keyframes fadeIn{
+    to{
+      opacity:1;
+    }
+  }
+
+h1{
+  font-family: 'Jost', sans-serif;
+  color:rgb(0, 51, 102);
+}
+h2{
+  font-family: 'Jost', sans-serif;
+  color:rgb(0, 51, 102);
+}
+h3{
+  font-family: 'Jost', sans-serif;
+  color:rgb(0, 51, 102);
+}
+
+h5{
+  font-family: 'Jost', sans-serif;
+  color:rgb(0, 51, 102);
+}
+
+p{
+  font-family: 'Jost', sans-serif;
+  color:rgb(0, 51, 102);
+}
+
+a{
+  font-family: 'Jost', sans-serif;
+}
+button{
+  font-family: 'Jost', sans-serif;
+}
+  /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 901px) {
+  #imagenclientes{
+    width: 80%
+  }
+  #navbarinferior{ width: 5%;}
+  #divfondo{width: 100%;height:90%;background-image: url('fondoazul27.jpeg'); background-size: 100% 100%;margin-bottom:50px}
+  #Bannerhero1{
+    width: 70%;text-align:center;display:block;margin:auto
+  }
+  #titulohome{
+    padding-left:10%;padding-right:10%
+  }
+  #helperbanner{
+    width: 100%;height:100%;display:block;margin:auto
+  }
+  
+  
+  .container-navbarlow{
+    display: none;
+  }
+  .position-relative{
+    left: 1000px
+
+  }
+  .navbar-light{
+    width: 50%;
+    left: 326px;
+    float:left;
+  }
+  #botonfondo0{ width: 105px;  }
+  #logoinferior{margin-bottom:305px;margin-left:100px;width:50%}
+  #rowinicio{ width: 100%; margin-left: 5px;margin-top:-95px}
+#botonfondo1{ width: 100px; margin-bottom: 5px; margin-top: -5px ; }
+#botonfondo2{ width: 100px;  }
+#botonfondo3{ width: 100px;  }
+  #botonesinferioresdiv {
+      width: 5%; 
+    }
+
+  .ContainerHero{
+    width: 100%;
+    padding-left: 10px;
+  }
+  .ContainerToronto{
+    width: 100%;
+    padding-left: 100px;
+  }
+  .HeroC{
+    padding-top: 103px;
+    padding-left: 20px;
+  }
+  .ContainerBeneficios3{
+    width: 93.5%;
+    padding-top: 20px;
+    padding-left: 23px;
+  }
+  .ContainerBeneficios{
+    width: 100%;
+    padding-left: 185px;
+    padding-top: 60px;
+  }
+  
+  #FondoHero{
+    width: 60%;
+  }
+  .HeroUP{
+    position: relative;
+    }
+    .ContainerBeneficios2{
+      position: absolute;
+      width: 55%;
+      top: 570px;
+      left: 130px;
+    }
+    .HeroA{
+      position: absolute;
+      Width: 13%;
+      
+    }
+    .Hero1{
+    position: absolute;
+    width: 18%;
+    top: 130px;
+    left: 215px; 
+    }
+    .Hero2{
+    position: absolute;
+    width: 30%;
+   
+     }
+     .Hero3{
+      position: absolute;
+      width: 20%;
+      top: 880px;
+      left: 180px; 
+      }
+      .Hero4{
+      position: absolute;
+      width: 20%;
+      top: 880px;
+      left: 520px; 
+       }
+       .Hero5{
+        position: absolute;
+        width: 20%;
+        top: 880px;
+        left: 870px; 
+         }
+         .Hero6{
+          position: absolute;
+          width: 3%;
+          top: 345px;
+          left: 1118px; 
+           }
+           .Hero7{
+            position: absolute;
+            width: 30%;
+            top: 227px;
+            left: 685px; 
+             }
+             .Hero8{
+              position: absolute;
+              width: 40%;
+              top: 310px;
+              left: 570px; 
+               }
+               .Hero9{
+                position: absolute;
+                width: 20%;
+                top: 665px;
+                left: 555px; 
+                 }
+                 .Hero10{
+                  position: absolute;
+                  width: 41%;
+                  top: 478px;
+                  left: 565px; 
+                   }
+                   .Hero11{
+                    position: absolute;
+                    width: 3%;
+                    top: 358px;
+                    left: 780px; 
+                     }
+                    }
+                    .Hero12{
+                     position: absolute;
+                     width: 100%;
+                     top: 1715px;
+                     left: 5px; 
+                      }
+  
+  #Incluye{
+    width: 100%;
+  
+  }
+  #bannerplanes{ width: 70%;}
+  #preciosserv{padding-right:0%;padding-left:0%}
+  #precios2serv{padding-right:10%;padding-left:10%}
+  #logo{
+    padding-right:20%;padding-left:20%;display: block;margin: auto;margin-top: -20px;width: 50%;
+  }
+  #textosbajos{
+    padding-top: 100px;
+  }
+  #botonagendarsuperior{
+    margin-right: 10px;
+    padding-right: 10px;
+  }
+  #logoencabezado {
+    width: 85.51px;
+    height: 47px;
+    margin-top: 2px;
+    margin-right: 20px;
+  }
+  .splash {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(90deg, rgb(42, 31, 253) 0%, rgb(3, 42, 214) 35%, rgb(0, 132, 255) 100%);
+    z-index: 500;
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 200px;
+    
+  }
+  .splash.display-none {
+    position: fixed;
+    opacity:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(90deg, rgb(42, 31, 253) 0%, rgb(3, 42, 214) 35%, rgb(0, 132, 255) 100%);
+    z-index: -10;
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 200px;
+    transition: all 0.5s;
+    
+  }
+  .fade-in{
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+  }
+    .h1n {
+      font-size: 45px;
+      color:rgb(20, 44, 110);
+    }
+    .h2n {
+      font-size: 25px;
+      color:rgb(20, 44, 110);
+    }
+    .h3n {
+      font-size: 25px;
+      font-weight:lighter;
+    }
+    #carouselExampleFade {
+      height: 600px;
+      padding-top: 85px;
+      margin-right:10%;
+      margin-left:10%;
+      margin-bottom:10px
+    }
+    #container1 {
+      margin-top: 20px;
+      height: 380px;
+      width: 500px;
+      padding-top: 20px;
+    }
+    #botonhogares {
+      width: 100%;
+    }
+    #botonempresas{
+      width: 100%;
+    } 
+    #botondesinfeccion {
+      width: 100%;
+    }
+    #botonservers{
+      width: 100%;
+    } 
+    #columnaincluye{
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 900px) {
+    #bannerplanes{ width: 100%;}
+    #rowinicio{ width: 110%;margin-top:-40px}
+    #botonfondo0{ width:24%;  }
+  #botonfondo1{ width: 23%;margin:0px }
+  #botonfondo2{ width: 23%;  }
+  #botonfondo3{ width: 23%;  }
+    #logo{
+      padding-right:0%;padding-left:0%;display: block;margin: auto;margin-top: -60px;margin-left:42%;width: 30%;
+    }
+    #formularioc{
+      margin:20px
+    }
+    #logoinferior{margin-bottom:405px;margin-left:10px;width:100%}
+    #navbarinferior{ width: 100%;}
+    #preciosserv{padding-right:0%;padding-left:0%}
+  #precios2serv{padding-right:0%;padding-left:0%}
+    #divfondo{width: 100%;height:90%;background-image: url('fondoazul27.jpeg'); background-size: 150% 50%;margin-bottom:50px;background-repeat: no-repeat;}
+    #titulohome{
+      padding-left:1%;padding-right:1%
+    }
+    #imagenclientes{
+      width: 100%
+    }
+    #helperbanner{
+      width: 100%;height:100%;display:block;margin:auto
+    }
+    .row-side{
+      display: nones;
+    }
+    .navbar-light{
+      position: fixed;
+      Width: 100%;
+      left: none;
+    }
+    .HeroUP{
+      position: relative;
+      top: 70px;
+      }
+    .Hero7{
+      position: absolute;
+      width: 139%;
+      left: 65px;
+      top: 675px;
+
+    } 
+    .Hero8{
+      position: absolute;
+      width: 135%;
+      top: 775px;
+      left: 75px;
+    } 
+    .Hero10{
+      position: absolute;
+      width: 140%;
+      top: 950px;
+      left: 65px;
+    }
+    .Hero2{
+      position: absolute;
+      top: 190px;
+      width:150%;
+      left: 35px;
+    }  
+    .Hero1{
+      display: none;
+    }  
+    .Hero12{
+      position: absolute;
+      width: 140%;
+      top: 1125px;
+      Left: 70px;
+    }
+    .HeroB{
+      padding-top: 50px;
+  
+    }
+    .ContainerBeneficios3{
+      width: 100%;
+      padding-top: 0px;
+      padding-left: 0px;
+    }
+    .ContainerBeneficios2{
+      width: 118%;
+      padding-left: 50px;
+      padding-top: 650px;
+      
+   
+    }
+    .ContainerBeneficios{
+      width: 135%;
+      padding-top: 60px;
+      padding-left: 110px;
+   
+    }
+    .HeroA{
+      position: absolute;
+      width: 60%;
+      left: 230px;
+      top: 15px;
+    }
+    
+    #FondoHero{
+      top: 100px;
+      width: 175%;
+    }
+    #Incluye{
+      width: 20%;
+    
+    }
+    #Botonagendarsuperior{
+      display: none;
+    }
+    #BotonesInicio{
+      margin-left: 10px;
+      margin-right: 10px;
+
+    }
+    #logoencabezado {
+      width: 78px;
+      height: 42px;
+    }
+    .splash {
+      position: fixed;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(90deg, rgb(42, 31, 253) 0%, rgb(3, 42, 214) 35%, rgb(0, 132, 255) 100%);
+      z-index: 500;
+      color: white;
+      text-align: center;
+      margin-top: 65px;
+      padding-top: 300px;
+      
+    }
+    .splash.display-none {
+      position: fixed;
+      opacity:0;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(90deg, rgb(42, 31, 253) 0%, rgb(3, 42, 214) 35%, rgb(0, 132, 255) 100%);
+      z-index: -10;
+      color: white;
+      text-align: center;
+      margin-top: 70px;
+      padding-top: 200px;
+      transition: all 0.5s;
+      
+    }
+    .h1n {
+      font-size: 30px;
+      color:rgb(36, 53, 95);
+      margin-top: 10px;
+      padding-top: 100px;
+      margin-left: 10px;
+    }
+    .h2n {
+      font-size: 20px;
+      color:rgb(44, 52, 75);
+    }
+    .h3n {
+      font-size: 15px;
+      font-weight:lighter;
+    }
+    #Bannerhero1{
+      width: 100%;text-align:center;display:block;margin-left:10px;margin-right: 10px;
+    }
+    #bannersup {
+      padding-top: 55px;
+      margin-right:1%;
+      margin-left:1%;
+      margin-bottom:10px
+    }
+    #botonesinferioresdiv {
+      width: 100%;
+      
+    }
+    #container1 {
+      margin-top: 100px;
+      margin-left: 20px;
+      margin-right: 100px;
+      border-top: 10px;
+      height: 400px;
+      width: 375px;
+    }
+    #botonhogares {
+      width: 130px;
+      margin-left: 25px;
+    }
+    #botonempresas{
+      width: 130px;
+      margin-left:-40px; 
+    } 
+    #botondesinfeccion {
+      width: 130px;
+      margin-top:0px; 
+      margin-left: 25px;
+    }
+    #botonservers{
+      width: 130px;
+      margin-top:0px; 
+      margin-left: -40px;
+    } 
+
+    #columnaincluye{
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+  
+
+  }

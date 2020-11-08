@@ -1,0 +1,97 @@
+/* Para pantallas mayores a 600 */
+@media screen and (min-width: 801px) {
+	.background {
+		background: #131933;
+		width: 100%;
+		min-height: 100%;
+		padding: 25px 0px 150px;
+	}
+	agm-map {
+		height: 200px;
+	}
+	.contenedor {
+		padding: 24px;
+		background-color: #fff;
+		width: 70%;
+		border-radius: 7px;
+		margin: 0px auto 15px;
+		box-shadow: 1px 3px 8px 0px #00000024;
+		.service-description {
+			width: 50%;
+			padding-left: 10px;
+			display: inline-block;
+		}
+		.type-service {
+			width: 50%;
+			padding-right: 10px;
+			display: inline-block;
+		}
+	}
+	.contenedorFondo {
+		padding: 14px;
+		background-color: #fff;
+		width: 95%;
+		border-radius: 7px;
+		margin: 0px auto 15px;
+		box-shadow: 1px 3px 8px 0px #00000024;
+		.service-description {
+			width: 50%;
+			padding-left: 10px;
+			display: inline-block;
+		}
+		.type-service {
+			width: 50%;
+			padding-right: 10px;
+			display: inline-block;
+		}
+	}
+}
+
+/* Para pantallas menores a 600*/
+@media screen and (max-width: 800px) {
+	.background {
+		padding-top: 15px;
+		background: #131933;
+		width: 100%;
+		min-height: 100%;
+	}
+	agm-map {
+		height: 100px;
+	}
+	.contenedor {
+		padding: 14px;
+		background-color: #fff;
+		width: 95%;
+		border-radius: 7px;
+		margin: 0px auto 15px;
+		box-shadow: 1px 3px 8px 0px #00000024;
+		.service-description {
+			width: 50%;
+			padding-left: 10px;
+			display: inline-block;
+		}
+		.type-service {
+			width: 50%;
+			padding-right: 10px;
+			display: inline-block;
+		}
+	}
+	.contenedorFondo {
+		padding: 14px;
+		background-color: #fff;
+		width: 95%;
+		border-radius: 7px;
+		margin: 0px auto 200px;
+		box-shadow: 1px 3px 8px 0px #00000024;
+		.service-description {
+			width: 50%;
+			padding-left: 10px;
+			display: inline-block;
+		}
+		.type-service {
+			width: 50%;
+			padding-right: 10px;
+			display: inline-block;
+		}
+	}
+}

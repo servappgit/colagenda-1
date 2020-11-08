@@ -1,0 +1,398 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ExampleDialogComponent } from '../example-dialog/example-dialog.component';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { OpcionesService } from 'src/app/services/opciones.service';
+import { serviceService } from '../services/service.service';
+import { Router, ActivatedRoute } from "@angular/router";
+
+@Component({
+	selector: 'app-booking',
+	templateUrl: './booking.component.html',
+	styleUrls: ['./booking.component.scss']
+})
+
+export class BookingComponent implements OnInit {
+
+	public metodoPago = 'consignar';
+	public descuento = 0;
+	public servicioAgendado: any = {};
+	public recargo = 0;
+	public valorPorHora: number = 13500; //13500 COP por hora
+	public user: any = {
+		uid: '',
+		locationAdress: '',
+		city: 'Bogotá',
+		adressComplements: '',
+		country: 'Colombia',
+		adressHints: '',
+		name: '',
+		lastName: '',
+		email: '',
+		contactPhone: '',
+	};
+	public idServer = ''
+
+	public lat = 4.60971;
+	public lng = -74.08175;
+	public selectedService: string;
+	public imageService: any ;
+	public serviceStartTime;
+	public serviceDate: string;
+
+	public serviceHours: number = 0;
+	public mostrarTotalHoras: any;
+	public seleccionarTotalHoras: any;
+	public mostrarTotalPrice: any;
+
+	public homeService: any = {
+		spaceAreaTime: 0,
+		kitchenTime: 0,
+		lavadoPlatosTime: 0,
+		cocinarTime: 0,
+		lavadoRopaTime: 0,
+		planchadoTime: 0,
+		bathroomsTime: 0,
+		bedroomsTime: 0,
+		
+	};
+
+	public bussinesService: any = {
+		spaceAreaTime: 0,
+		lavadoPlatosTime: 0,
+		cocinarTime: 0,
+		desks: 0,
+		officeCleanUp: 0,
+	};
+
+	public disinfectionService: any = {
+		spaceAreaTime: 0,
+	};
+
+	public helperService: any = {
+		horasTotal: 0,
+		adulto: false,
+		menor: false,
+		mascota: false,
+		eventos: false,
+		cooking: false
+	};
+
+	public servicios: any = [];
+	public horaServicios: any = [];
+	public areasGenerales: any = [];
+	public tiempoCuartos: any = [];
+	public tiempoCocinas: any = [];
+	public tiempoBanos: any = [];
+	public tiempoPlatos: any = [];
+	public tiemposComida: any = [];
+	public tiempoLavanderia: any = [];
+	public tiempoPlanchado: any = [];
+	public tiempoDesk: any = [];
+	public SameServer = true;
+
+
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+		private opcionesService: OpcionesService,
+		public dialog: MatDialog,
+		private ServicioService: serviceService,
+		public activatedRoute: ActivatedRoute,
+	) {this.selectedService = this.router.getCurrentNavigation().extras.state.example;
+	
+	console.log(this.selectedService)
+		this.cargarSelects();
+		// mantine el usuario de firebase loggeado
+		let usuario = JSON.parse(localStorage.getItem('usuario'));
+		this.user.email = usuario.email;
+		this.user.uid = usuario.uid
+	}
+
+	ngOnInit() { 
+	}
+
+	openDialog() {
+		const dialogRef = this.dialog.open(ExampleDialogComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+		});
+		const dialogConfig = new MatDialogConfig();
+		dialogConfig.position = {
+			'top': '0',
+			left: '0'
+		};
+	}
+	public seleccionarServicio() {
+		if (this.selectedService == 'HomeCleaning') {
+			this.imageService = '/assets/imagenserviciolimpieza2.jpeg';
+		} else if (this.selectedService == 'BusinessCleaning') {
+			this.imageService = '/assets/imagenserviciolimpiezaempresas.jpeg';
+		} else if (this.selectedService == 'Disinfection') {
+			this.imageService = '/assets/imagenserviciodesinfeccion.jpeg';
+		} else if (this.selectedService == 'Helper') {
+			this.imageService = '/assets/imagenserviciohelper.jpeg';
+		}
+		this.mostrarTotalHoras = 0;
+	}
+
+	public actualizarFactura() {
+		
+		if (this.seleccionarTotalHoras== 2){ this.mostrarTotalPrice = 39900}
+		else if (this.seleccionarTotalHoras== 3){ this.mostrarTotalPrice = 49900}
+		else if (this.seleccionarTotalHoras== 4){ this.mostrarTotalPrice = 59900}
+		else if (this.seleccionarTotalHoras== 5){ this.mostrarTotalPrice = 64900}
+		else if (this.seleccionarTotalHoras== 6){ this.mostrarTotalPrice = 69900}
+		else if (this.seleccionarTotalHoras== 7){ this.mostrarTotalPrice = 74900}
+		else if (this.seleccionarTotalHoras== 8){ this.mostrarTotalPrice = 79900}
+	}
+
+	public homeServiceFactura() {
+		this.homeService.horasTotal = 0;
+		
+		//suma basica
+		this.homeService.horasTotal = Number(this.homeService.spaceAreaTime) + Number((this.homeService.kitchenTime)) + Number(this.homeService.lavadoPlatosTime) + Number(this.homeService.cocinarTime) + Number(this.homeService.lavadoRopaTime) + Number(this.homeService.planchadoTime) + Number(this.homeService.bathroomsTime) + Number(this.homeService.bedroomsTime);
+		//suma checkBoxes
+		if (this.homeService.cleanInside == true) { this.homeService.horasTotal = this.homeService.horasTotal + 15; }
+		if (this.homeService.cleanOven == true) { this.homeService.horasTotal = this.homeService.horasTotal + 15; }
+		if (this.homeService.cleanFridge == true) { this.homeService.horasTotal = this.homeService.horasTotal + 45; }
+		if (this.homeService.studio == true) { this.homeService.horasTotal = this.homeService.horasTotal + 20; }
+		if (this.homeService.garage == true) { this.homeService.horasTotal = this.homeService.horasTotal + 60; }
+		if (this.homeService.windowDeep == true) { this.homeService.horasTotal = this.homeService.horasTotal + 45; }
+		if (this.homeService.cleanKitchen == true) { this.homeService.horasTotal = this.homeService.horasTotal + 20; }
+		if (this.homeService.balcon == true) { this.homeService.horasTotal = this.homeService.horasTotal + 30; }
+		if (this.homeService.jardin == true) { this.homeService.horasTotal = this.homeService.horasTotal + 60; }
+		this.mostrarTotalHoras = this.minutesToString(this.homeService.horasTotal)
+		
+		return this.homeService.horasTotal
+	}
+
+	public bussinesServiceFactura() {
+		this.bussinesService.horasTotal = 0;
+		this.bussinesService.horasTotal = Number(this.bussinesService.spaceAreaTime) + Number(this.bussinesService.lavadoPlatosTime) + Number(this.bussinesService.cocinarTime) + Number(this.bussinesService.desks) + Number(this.bussinesService.officeCleanUp);
+		if (this.bussinesService.cleanInside == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 15; }
+		if (this.bussinesService.shopWindow == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 20; }
+		if (this.bussinesService.meetingRoom == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 20; }
+
+		this.mostrarTotalHoras = this.minutesToString(this.bussinesService.horasTotal);
+		return this.bussinesService.horasTotal
+	}
+
+	public disinfectionServiceFactura() {
+		this.disinfectionService.horasTotal = 0;
+		this.disinfectionService.horasTotal = Number(this.disinfectionService.spaceAreaTime);
+		this.mostrarTotalHoras = (this.disinfectionService.horasTotal/60);
+		if (this.disinfectionService.horasTotal == 10){this.mostrarTotalPrice=35000}
+		else if (this.disinfectionService.horasTotal == 20){this.mostrarTotalPrice=35000}
+		else if (this.disinfectionService.horasTotal == 30){this.mostrarTotalPrice=35000}
+		else if (this.disinfectionService.horasTotal == 40){this.mostrarTotalPrice=39900}
+		else if (this.disinfectionService.horasTotal == 50){this.mostrarTotalPrice=44900}
+		else if (this.disinfectionService.horasTotal == 60){this.mostrarTotalPrice=49900}
+		else if (this.disinfectionService.horasTotal == 70){this.mostrarTotalPrice=54900}
+		else if (this.disinfectionService.horasTotal == 80){this.mostrarTotalPrice=59900}
+		else if (this.disinfectionService.horasTotal == 90){this.mostrarTotalPrice=64900}
+		else if (this.disinfectionService.horasTotal == 100){this.mostrarTotalPrice=69900}
+		else if (this.disinfectionService.horasTotal == 110){this.mostrarTotalPrice=74900}
+		else if (this.disinfectionService.horasTotal == 120){this.mostrarTotalPrice=79900}
+		else if (this.disinfectionService.horasTotal == 140){this.mostrarTotalPrice=84900}
+		else if (this.disinfectionService.horasTotal == 160){this.mostrarTotalPrice=89900}
+		else if (this.disinfectionService.horasTotal == 180){this.mostrarTotalPrice=94500}
+		else if (this.disinfectionService.horasTotal == 200){this.mostrarTotalPrice=99900}
+		else if (this.disinfectionService.horasTotal == 220){this.mostrarTotalPrice=125000}
+		else if (this.disinfectionService.horasTotal == 240){this.mostrarTotalPrice=150000}
+		else if (this.disinfectionService.horasTotal == 260){this.mostrarTotalPrice=175000}
+		else if (this.disinfectionService.horasTotal == 280){this.mostrarTotalPrice=200000}
+		else {this.mostrarTotalPrice = 250000}
+		return this.disinfectionService.horasTotal
+	}
+
+	public helperServiceFactura() {
+		this.helperService.horasTotal = 0;
+		this.mostrarTotalHoras = this.minutesToString(this.helperService.horasTotal);
+		return this.helperService.horasTotal
+	}
+
+	public minutesToString(minutes) {
+		let hour;
+		let minute;
+		hour = Math.floor(minutes / 60);
+		hour = (hour < 10) ? '0' + hour : hour;
+		minute = Math.floor((minutes) % 60);
+		minute = (minute < 10) ? '0' + minute : minute;
+		return hour + ':' + minute;
+	}
+
+	public cargarSelects() {
+		this.servicios = this.opcionesService.tipoServicio();
+		this.horaServicios = this.opcionesService.horaServicio();
+		this.areasGenerales = this.opcionesService.tiempoGenerales();
+		this.tiempoCocinas = this.opcionesService.cocina();
+		this.tiempoCuartos = this.opcionesService.cuartos();
+		this.tiempoBanos = this.opcionesService.banos();
+		this.tiempoPlatos = this.opcionesService.platos();
+		this.tiemposComida = this.opcionesService.comida();
+		this.tiempoLavanderia = this.opcionesService.lavanderia();
+		this.tiempoPlanchado = this.opcionesService.planchado();
+		this.tiempoDesk = this.opcionesService.desk();
+	}
+
+	public valorServicio(minutos) {
+		let horas = (minutos / 60);
+		
+		let precio = horas * this.valorPorHora;
+		console.log(precio)
+		let precioFinal = Math.round(precio * 100) / 100;
+		
+		return precioFinal
+	}
+
+	public agendar() {
+		if (this.selectedService == 'HomeCleaning') {
+			this.agendarHomeCleaning();
+		} else if (this.selectedService == 'BusinessCleaning') {
+			this.agendarBusinessCleaning()
+		} else if (this.selectedService == 'Disinfection') {
+			this.agendarDisinfection();
+		} else if (this.selectedService == 'Helper') {
+			this.agendarHelper();
+		}
+		this.router.navigate(['gracias']);
+	}
+
+	public agendarHelper() {
+		let x = Number(this.seleccionarTotalHoras)
+		this.helperService.horas = Math.round(x * 100) / 100;
+		this.servicioAgendado = {};
+		this.servicioAgendado = {
+			adulto: this.helperService.adulto,
+			eventos: this.helperService.eventos,
+			cafeteria: this.helperService.cooking,
+			mascota: this.helperService.mascota,
+			direccion: this.user.locationAdress,
+			estado: 'Pendiente',
+			id: Date.now(),
+			fechaCreacion: Date.now(),
+			horasDeServicio: this.helperService.horas,
+			hora: this.serviceStartTime,
+			formaDePago: this.metodoPago,
+			precio: this.mostrarTotalPrice,
+			descuento: this.descuento,
+			total: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			creado: "Agendador",
+			tipoServicio: 'Plan Individual',
+			idServer: "",
+			subasta: true,
+			userid: this.user.uid,
+			enviarCorreo: false,
+			fecha: this.serviceDate
+		}
+		console.log(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
+	}
+
+	public agendarBusinessCleaning() {
+		let x = (this.bussinesService.horasTotal / 60)
+		this.bussinesService.horas = Math.round(x * 100) / 100;
+		this.servicioAgendado = {};
+		this.servicioAgendado = {
+			limpieza: true,
+			direccion: this.user.locationAdress,
+			estado: 'Pendiente',
+			id: Date.now(),
+			fechaCreacion: Date.now(),
+			horasDeServicio: this.bussinesService.horas,
+			hora: this.serviceStartTime,
+			formaDePago: this.metodoPago,
+			precio: this.mostrarTotalPrice,
+			descuento: this.descuento,
+			total: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			creado: "Agendador",
+			tipoServicio: 'Plan Individual',
+			idServer: "",
+			subasta: true,
+			userid: this.user.uid,
+			enviarCorreo: false,
+			fecha: this.serviceDate
+		}
+		if (this.bussinesService.cocinarTime > 0) {this.servicioAgendado.cafeteria = true}
+		if (this.bussinesService.meetingRoom == true) {this.servicioAgendado.reunion = true}
+		if (this.bussinesService.shopWindow == true) {this.servicioAgendado.limpiezaEstanteria = true}
+		console.log(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
+	}
+
+	public agendarHomeCleaning() {
+		let x = (this.homeService.horasTotal / 60)
+		this.homeService.horas = Math.round(x * 100) / 100;
+		this.servicioAgendado = {};
+		this.servicioAgendado = {
+			limpieza: true,
+			direccion: this.user.locationAdress,
+			estado: 'Pendiente',
+			id: Date.now(),
+			fechaCreacion: Date.now(),
+			horasDeServicio: this.homeService.horas,
+			hora: this.serviceStartTime,
+			formaDePago: this.metodoPago,
+			precio: this.mostrarTotalPrice,
+			descuento: this.descuento,
+			total: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			creado: "Agendador",
+			tipoServicio: 'Plan Individual',
+			idServer: "",
+			subasta: true,
+			userid: this.user.uid,
+			enviarCorreo: false,
+			fecha: this.serviceDate
+		}
+		if (this.homeService.cocinarTime > 0) {
+			this.servicioAgendado.alimentos = true
+			this.servicioAgendado.cafeteria = true
+		}
+		if (this.homeService.lavadoRopaTime > 0) {this.servicioAgendado.lavado = true}
+		if (this.homeService.planchadoTime > 0) {this.servicioAgendado.planchado = true}
+		console.log(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
+	}
+
+	public agendarDisinfection() {
+		let x = (this.disinfectionService.horasTotal / 60)
+		this.disinfectionService.horas = Math.round(x * 100) / 100;
+		this.servicioAgendado = {};
+		this.servicioAgendado = {
+			direccion: this.user.locationAdress,
+			estado: 'Pendiente',
+			id: Date.now(),
+			fechaCreacion: Date.now(),
+			horasDeServicio: this.disinfectionService.horas,
+			hora: this.serviceStartTime,
+			formaDePago: this.metodoPago,
+			precio: this.mostrarTotalPrice,
+			descuento: this.descuento,
+			total: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			creado: "Agendador",
+			tipoServicio: 'Plan Individual',
+			idServer: "",
+			subasta: true,
+			userid: this.user.uid,
+			enviarCorreo: false,
+			fecha: this.serviceDate
+		}
+		console.log(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
+	}
+
+	public guardarServicio(servicio) {
+		if (servicio.userid != '' && servicio.horasDeServicio != '' && servicio.fecha != '' && servicio.hora != '' && servicio.direccion != '') {
+			this.ServicioService.registerServicio(servicio);
+		} else {
+			alert('Por favor Llenar todos los campos');
+		}
+	}
+
+}
