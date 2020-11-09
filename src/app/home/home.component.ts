@@ -7,8 +7,22 @@ import { Router } from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router) {  }
+  public user: any = {
+		uid: '',
+		locationAdress: '',
+		city: 'Bogotá',
+		adressComplements: '',
+		country: 'Colombia',
+		adressHints: '',
+		name: '',
+		lastName: '',
+		email: '',
+		contactPhone: '',
+	};
+  constructor(private router: Router) { // mantine el usuario de firebase loggeado
+		let usuario = JSON.parse(localStorage.getItem('usuario'));
+		this.user.email = usuario.email;
+		this.user.uid = usuario.uid }
 
   ngOnInit(): void {
   }
@@ -19,6 +33,8 @@ export class HomeComponent implements OnInit {
    
 
   }
+
+ 
   public irAgendadorLimpieza() {
     console.log("funcionando")
     this.router.navigate(['booking'], { state: { example: 'HomeCleaning' } });

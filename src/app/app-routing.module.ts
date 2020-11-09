@@ -20,12 +20,12 @@ const routes: Routes = [
   component: GraciasComponent
 },
 {
-  path: 'home-colombia',
+  path: 'servicios',
   component: HomeComponent
 },
 {
   path: '',
-  redirectTo: '/home-colombia',
+  redirectTo: '/login',
   pathMatch:'full'
 }
 

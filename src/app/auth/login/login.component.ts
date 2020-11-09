@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 			console.log(data)
 			if (data) {
 				this.authService.storeUserData(data, data.user);
-				this.router.navigate(['booking']);
+				this.router.navigate(['servicios']);
 			}
 		}).catch(err => console.log('err', err));
 	}

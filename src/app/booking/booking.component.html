@@ -1,30 +1,64 @@
+ <!-- BARRA DE NAVEGACION SUPERIOR -->
+  
+ <nav class="navbar navbar-dark navbar-expand-md" style="max-width:100%; background-color: #000033;padding-left:0px;padding-right:0px">
+	<a class="navbar-brand" href="/"><img src="../../assets/Intro-SERV-8.gif" style="width:50px" alt="SERV®"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
+		<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
+			<img src="../../assets/Iconos XD/Iconos PNG/Card Planes.png" style="width: 100%;display: block;margin: auto;">
+			<img src="../../assets/Iconos XD/Iconos PNG/Card Referidos.png" style="width: 100%;display: block;margin: auto;">
+		 </div>
+	 </div>
+ 
+	 
+   
+   </nav> 
+	<div class="div">
+	  <nav class="navbar fixed-top navbar-dark navbar-expand-md" style="max-width:100%; background-color: #000033;">
+		<button class="navbar-toggler" type="button" (click)="volver()">
+			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+			  </svg>
+		</button>
+	<a class="navbar-brand" href="/"><img src="../../assets/Intro-SERV-8.gif" style="width:50px" alt="SERV®"></a>
 
+	<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
+		<img src="../../assets/Iconos XD/Iconos PNG/Card Planes.png" style="width: 100%;display: block;margin: auto;">
+		<img src="../../assets/Iconos XD/Iconos PNG/Card Referidos.png" style="width: 100%;display: block;margin: auto;">
+	 </div>
+ 
+	
+   
+   </nav> 
+	</div>
 	<!-- Card #1 Seleccionar service-->
 	
 	<div class='contenedor'>
 		
 
 			<img src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;">
-		
+			<mat-form-field style="margin: unset !important;width: 100%;">
+				<mat-label>Selecciona un servicio</mat-label>
+				<mat-select [(ngModel)]="selectedService" (ngModelChange)="seleccionarServicio()">
+					<mat-option *ngFor="let servicio of servicios" [value]="servicio.tipo">{{servicio.nombre}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
+				<button mat-button (click)="openDialog()">Click acá para ver que incluye tu servicio</button>
+			</div>
 		</div>	
 			<div class='contenedor'>
 	
 		<div class="row">
 			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">1. Servicio</h2>
+				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">1. Fecha y hora</h2>
 			</div>
 			
 			<div class="col-sm-6">
-				<mat-form-field style="margin: unset !important;width: 100%;">
-					<mat-label>Selecciona un servicio</mat-label>
-					<mat-select [(ngModel)]="selectedService" (ngModelChange)="seleccionarServicio()">
-						<mat-option *ngFor="let servicio of servicios" [value]="servicio.tipo">{{servicio.nombre}}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
-				<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
-					<button mat-button (click)="openDialog()">Click acá para ver que incluye tu servicio</button>
-				</div>
+				
 				<mat-form-field style="margin: unset !important;width: 100%;">
 					<mat-label>¿Para cuándo necesitas tu servicio?</mat-label>
 					<input matInput type="date" [(ngModel)]="serviceDate" placeholder="When do you need your service"
@@ -44,18 +78,18 @@
 	<div *ngIf="selectedService == 'HomeCleaning'" class="contenedor">
 		<div class="row">
 			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Cotiza y selecciona las horas</h2>
+				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Horas de servicio</h2>
 				
 			</div>
 			<div class="col-sm-6">
 				<div class="row" style="margin:2px;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(44, 99, 145)">
+					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
 						<mat-expansion-panel-header>
 							<mat-panel-title>
 
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area total (20min/500ft2)
+										Area total (20min/50m2)
 									</h5>
 								</div>
 							</mat-panel-title>
@@ -86,13 +120,13 @@
 					</mat-expansion-panel>
 				</div>
 				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(38, 86, 124)">
+					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
 						<mat-expansion-panel-header>
 							<mat-panel-title>
 
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area de cocina (1h/each)
+										Cocina (45min base + extras)
 									</h5>
 								</div>
 							</mat-panel-title>
@@ -171,13 +205,13 @@
 					</mat-expansion-panel>
 				</div>
 				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(32, 72, 105)">
+					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
 						<mat-expansion-panel-header>
 							<mat-panel-title>
 
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Baños a limpiar (30min/each)
+										Baños a limpiar (30min/c.u)
 									</h5>
 								</div>
 							</mat-panel-title>
@@ -212,14 +246,14 @@
 					</mat-expansion-panel>
 				</div>
 				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(25, 58, 85)">
+					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
 						<mat-expansion-panel-header>
 							<mat-panel-title>
 
 
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Cuartos a limpiar (30min/each)
+										Cuartos a limpiar (30min/c.u)
 									</h5>
 								</div>
 							</mat-panel-title>
@@ -559,7 +593,7 @@
 							<mat-panel-title>
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area a desinfectar (20min/500ft2)
+										Area a desinfectar
 										
 									</h5>
 								</div>
@@ -673,7 +707,7 @@
 	</div>
 	<!-- Card #3 message-->
 	<div class='contenedor'>
-		<h1 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">3. Mensaje</h1>
+		<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">3. Sugerencias adicionales</h2>
 		<div class="row">
 			<div class="col-12">
 				<mat-slide-toggle [(ngModel)]="SameServer" style="font-size:medium; color:gray;margin-top: 20px;">Quiero a la ultima SERVER® que me atendió </mat-slide-toggle>
@@ -750,10 +784,10 @@
 		</div>
 	</div>
 
-	<h2 style="text-align: center;color: gray;margin: 10px 0px 30px;margin-bottom: 200px;">- Gracias por confiar en nosotros - <br> - En caso de necesitar asistencia - <br> COMUNIQUESE 3505755555</h2>
+	<h2 style="text-align: center;color: gray;margin: 10px 0px 30px;margin-bottom: 50px;"> Gracias por confiar en nosotros <br> En caso de necesitar asistencia <br> comuniquese 3505755555</h2>
 
 	<!-- BARRA INFERIOR-->
-	<nav class="navbar fixed-bottom navbar-light shadow-lg" style="box-shadow: 0 2px 16px -4px black;width: 100%;padding: 0px;background-color: #FFFFFF;">
+	<nav class="navbar navbar-light shadow-lg" style="box-shadow: 0 2px 16px -4px black;width: 100%;padding: 0px;background-color: #FFFFFF;">
 		<div class="row" style="width: 100%; margin: 5px">
 			<div class="col-12" style="padding-right: 0px;margin-right: 0px;padding-left: 0px;width: 100%;">
 				<div class="container p-2 rounded" style=" width: 100%;">

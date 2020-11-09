@@ -100,7 +100,8 @@ export class BookingComponent implements OnInit {
 		public dialog: MatDialog,
 		private ServicioService: serviceService,
 		public activatedRoute: ActivatedRoute,
-	) {this.selectedService = this.router.getCurrentNavigation().extras.state.example;
+	) {
+		this.selectedService = "HomeCleaning";
 	
 	console.log(this.selectedService)
 		this.cargarSelects();
@@ -136,7 +137,11 @@ export class BookingComponent implements OnInit {
 		}
 		this.mostrarTotalHoras = 0;
 	}
-
+	public volver() {
+		this.router.navigate(['servicios']);
+	   
+	
+	  }
 	public actualizarFactura() {
 		
 		if (this.seleccionarTotalHoras== 2){ this.mostrarTotalPrice = 39900}
