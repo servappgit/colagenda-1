@@ -26,12 +26,13 @@ export class LoginComponent implements OnInit {
 		}).catch(err => console.log('err', err));
 	}
 
-	//   logingoogle(){
-	//     this.authservice.logingoogle()
-	//     .then((res) => {
-	//       this.router.navigate(['booking']);
-	//     }).catch (err => console.log('err', err));
-	//   }
+	  public loginGoogle(){
+		  console.log("ok")
+	     this.authService.logingoogle()
+	     .then((res) => {
+	       this.router.navigate(['booking']);
+	     }).catch (err => console.log('err', err));
+	  }
 
 	//   loginfacebook(){
 	//     this.authservice.loginfacebook()

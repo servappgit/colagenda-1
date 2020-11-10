@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpModule, Http, Headers } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { auth } from 'firebase';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,7 @@ export class AuthService {
 
   constructor(private angularFireAuth: AngularFireAuth,
     public httpModule: HttpModule,
-    private db: AngularFireDatabase,
+    private db: AngularFireDatabase,private afAuth: AngularFireAuth,
     private http: Http) { }
 
   loginEmailUser(email, password) {
@@ -103,5 +105,25 @@ export class AuthService {
 
   deleteServer(id) {
     return this.db.object('server/' + id).remove();
+  }
+
+  logingoogle() {
+    console.log('Redireccionando a Google Login');
+    return this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+  }
+
+  loginfacebook() {
+    console.log('Redireccionando a facebook');
+     return this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+  
+  }
+
+  logout(){
+    this.afAuth.auth.signOut();
+  }
+  
+  getLoggedInUser(){
+    return this.afAuth.authState;
+    
   }
 }
