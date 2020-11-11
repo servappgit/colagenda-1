@@ -3,8 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpModule, Http, Headers } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
-import { auth } from 'firebase';
-import { promise } from 'protractor';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,7 @@ export class AuthService {
 
   public authToken: any;
   public user: any;
+  
   //baseURL: String = "http://localhost:8080/"
   baseURL: String = "http://serv-admin.herokuapp.com/";
   headers: Headers;
@@ -107,21 +107,25 @@ export class AuthService {
     return this.db.object('server/' + id).remove();
   }
 
-  logingoogle() {
-    console.log('Redireccionando a Google Login');
-    return this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-  }
+ // logingoogle() {
+   // console.log('Redireccionando a Google Login');
+    //return this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+  //}
 
-  loginfacebook() {
-    console.log('Redireccionando a facebook');
-     return this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+  //loginfacebook() {
+    //console.log('Redireccionando a facebook');
+     //return this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
   
-  }
-
+ // }
+ detail(id: string) {
+  return this.db.object('users/' + id).valueChanges();
+}
   logout(){
     this.afAuth.auth.signOut();
   }
-  
+  public storeGetUserData(property) {
+    return JSON.parse(localStorage.getItem(property));
+  }
   getLoggedInUser(){
     return this.afAuth.authState;
     

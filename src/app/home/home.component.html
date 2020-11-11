@@ -7,6 +7,7 @@
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
        <span class="navbar-toggler-icon"></span>
      </button>
+
      <div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
       <div class="row">
         <div class="col-4">
@@ -27,6 +28,12 @@
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
        <span class="navbar-toggler-icon"></span>
      </button>
+     <div class="col-2 my-auto">
+      <div end>
+        <a id="btnSalir" #btnSalir (click)="salir()" href="#" class="navigation"><i class="nb-power-circled" style="color: white;"></i>
+          Salir</a>
+      </div>
+    </div>
      <div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding: 10px;">
     <div class="row">
       <div class="col-4">
@@ -60,7 +67,7 @@
         Un nuevo día lleno de calma
       </h4>
       <h1 style="color: rgb(15, 15, 27);display: block;margin: auto;width: 100%">
-        ¡Hola!<strong> usuario.name</strong> 
+        ¡Hola!<strong> {{usuarioActivo.name}}</strong> 
       </h1>
     </div>
 
@@ -71,10 +78,10 @@
     </div>
     
     <div class="col-sm-12" style="width: 100%;">
-      <select style="display: block;margin: auto;width: 100%;font-size: x-large;">
+      <select style="display: block;margin: auto;width: 100%;font-size: x-large;" [(ngModel)]="selectedCity" (ngModelChange)="seleccionarCiudad()" >
         <option [ngValue]="null" disabled>¿En que ciudad te encuentras?</option>
-        <option value="tiene experiencia en aseo"> Bogotá, Colombia.</option>
-        <option value="no cuenta con experiencia en aseo">Medellín, Colombia.</option>
+        <option value="Bogotá"> Bogotá, Colombia.</option>
+        <option value="Medellín">Medellín, Colombia.</option>
     </select>
     </div>
    

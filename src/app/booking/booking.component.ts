@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { OpcionesService } from 'src/app/services/opciones.service';
 import { serviceService } from '../services/service.service';
 import { Router, ActivatedRoute } from "@angular/router";
+import { GoogleServiceService } from '../services/google-service.service';
 
 @Component({
 	selector: 'app-booking',
@@ -15,6 +16,15 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 export class BookingComponent implements OnInit {
 
+	public ciudadGoogle = "Bogotá D.C." as string;
+	public direccion: any;
+	public origin: any;
+	public originDefault: any;
+	public destination: any;
+	public idLocation: string = '';
+	public datosEdit: any;
+	public usuarioActivo: any = {};
+	public placePredictions: any[];
 	public metodoPago = 'consignar';
 	public descuento = 0;
 	public servicioAgendado: any = {};
@@ -23,7 +33,7 @@ export class BookingComponent implements OnInit {
 	public user: any = {
 		uid: '',
 		locationAdress: '',
-		city: 'Bogotá',
+		city: localStorage.getItem("selectedCity"),
 		adressComplements: '',
 		country: 'Colombia',
 		adressHints: '',
@@ -37,6 +47,7 @@ export class BookingComponent implements OnInit {
 	public lat = 4.60971;
 	public lng = -74.08175;
 	public selectedService: string;
+	public selectedCity: string;
 	public imageService: any ;
 	public serviceStartTime;
 	public serviceDate: string;
@@ -100,8 +111,11 @@ export class BookingComponent implements OnInit {
 		public dialog: MatDialog,
 		private ServicioService: serviceService,
 		public activatedRoute: ActivatedRoute,
+		public googleService: GoogleServiceService,
 	) {
-		this.selectedService = "HomeCleaning";
+		this.selectedService = localStorage.getItem("selectedService");
+		this.selectedCity = localStorage.getItem("selectedCity");
+		;
 	
 	console.log(this.selectedService)
 		this.cargarSelects();
@@ -111,7 +125,13 @@ export class BookingComponent implements OnInit {
 		this.user.uid = usuario.uid
 	}
 
-	ngOnInit() { 
+	ngOnInit() { this.usuarioActivo = this.authService.storeGetUserData('usuario');
+	console.log({
+	  userActive: this.usuarioActivo
+
+	});
+	
+	
 	}
 
 	openDialog() {
@@ -399,5 +419,6 @@ export class BookingComponent implements OnInit {
 			alert('Por favor Llenar todos los campos');
 		}
 	}
+
 
 }

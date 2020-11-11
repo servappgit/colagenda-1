@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {AutocompleteLibComponent, AutocompleteLibModule} from 'angular-ng-autocomplete'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
@@ -53,6 +55,7 @@ export const firebaseConfig = {
 		HomeComponent,
 	],
 	imports: [
+		AutocompleteLibModule,
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
@@ -83,7 +86,8 @@ export const firebaseConfig = {
 		MatSelectModule,
 		MatExpansionModule,
 		MatSlideToggleModule,
-		MatDialogModule
+		MatDialogModule,
+		
 
 	],
 	providers: [

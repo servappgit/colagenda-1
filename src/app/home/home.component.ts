@@ -1,48 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { firestore} from 'firebase';
 import { Router } from "@angular/router";
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public user: any = {
-		uid: '',
-		locationAdress: '',
-		city: 'Bogotá',
-		adressComplements: '',
-		country: 'Colombia',
-		adressHints: '',
-		name: '',
-		lastName: '',
-		email: '',
-		contactPhone: '',
-	};
-  constructor(private router: Router) { // mantine el usuario de firebase loggeado
-		let usuario = JSON.parse(localStorage.getItem('usuario'));
-		this.user.email = usuario.email;
-		this.user.uid = usuario.uid }
+  public usuarioActivo: any = {};
+public selectedCity = "Bogotá" as string;
 
-  ngOnInit(): void {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {  this.usuarioActivo = this.authService.storeGetUserData('usuario');
+  console.log({
+    userActive: this.usuarioActivo
+  });
   }
 
   public irAgendadorEmpresas() {
     console.log("funcionando")
+    this.seleccionarCiudad()
+    localStorage.setItem("selectedService", "BusinessCleaning");
     this.router.navigate(['booking'], { state: { example: 'BusinessCleaning' } });
    
 
   }
 
- 
+  public irAgendadorHelper() {
+    console.log("funcionando")
+    this.seleccionarCiudad()
+    localStorage.setItem("selectedService", "Helper");
+    this.router.navigate(['booking'], { state: { example: 'Helper' } });
+   
+
+  }
+
+  public seleccionarCiudad(){
+    localStorage.setItem("selectedCity", this.selectedCity);
+    console.log(this.selectedCity)
+  }
+ public salir(){
+   this.authService.logout();
+   this.router.navigate(['login']);
+ }
+
   public irAgendadorLimpieza() {
     console.log("funcionando")
+    this.seleccionarCiudad()
+    localStorage.setItem("selectedService", "HomeCleaning");
     this.router.navigate(['booking'], { state: { example: 'HomeCleaning' } });
    
 
   }
   public irAgendadorDesinfeccion() {
     console.log("funcionando")
+    this.seleccionarCiudad()
+    localStorage.setItem("selectedService", "Disinfection");
     this.router.navigate(['booking'], { state: { example: 'Disinfection' } });
    
 
