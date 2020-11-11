@@ -51,6 +51,7 @@ export class BookingComponent implements OnInit {
 	public imageService: any ;
 	public serviceStartTime;
 	public serviceDate: string;
+	public otro: string;
 
 	public serviceHours: number = 0;
 	public mostrarTotalHoras: any;
@@ -87,7 +88,8 @@ export class BookingComponent implements OnInit {
 		menor: false,
 		mascota: false,
 		eventos: false,
-		cooking: false
+		cooking: false,
+		todero: false,
 	};
 
 	public servicios: any = [];
@@ -102,6 +104,11 @@ export class BookingComponent implements OnInit {
 	public tiempoPlanchado: any = [];
 	public tiempoDesk: any = [];
 	public SameServer = true;
+	public city: string;
+	public country: string;
+	public department: string;
+	public locationId: string;
+
 
 
 	constructor(
@@ -115,6 +122,9 @@ export class BookingComponent implements OnInit {
 	) {
 		this.selectedService = localStorage.getItem("selectedService");
 		this.selectedCity = localStorage.getItem("selectedCity");
+		if(this.selectedCity == "Medellín"){ this.lng = -75.53611 ; this.lat = 6.29139 }
+		if( this.selectedCity == "Bogotá" ){this.city = "Bogotá D.C." ; this.department = "Bogotá D.C." ; this.country = "Colombia" ; this.locationId = "4fZC8McSlOvpPfIZnG7w"}
+		if( this.selectedCity == "Medellín" ){this.city = "Medellin" ; this.department = "Medellin" ; this.country = "Colombia" ; this.locationId = "bDS8BjlImklLBpSPctkh"}
 		;
 	
 	console.log(this.selectedService)
@@ -289,32 +299,40 @@ export class BookingComponent implements OnInit {
 		let x = Number(this.seleccionarTotalHoras)
 		this.helperService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
-		this.servicioAgendado = {
+this.servicioAgendado = {
 			adulto: this.helperService.adulto,
-			eventos: this.helperService.eventos,
-			cafeteria: this.helperService.cooking,
+			reunion: this.helperService.eventos,
+			niños: this.helperService.menor,
+			alimentos: this.helperService.cooking,
 			mascota: this.helperService.mascota,
+			todero: this.helperService.todero,
 			direccion: this.user.locationAdress,
-			estado: 'Pendiente',
-			id: Date.now(),
-			fechaCreacion: Date.now(),
-			horasDeServicio: this.helperService.horas,
-			hora: this.serviceStartTime,
-			formaDePago: this.metodoPago,
-			precio: this.mostrarTotalPrice,
+			observaciones: this.user.adressHints,
+			cities: this.city ,
+			client: this.usuarioActivo,
+			country: this.country,
+			creado: "web",
+			department: this.department,
 			descuento: this.descuento,
-			total: this.mostrarTotalPrice,
-			recargo: this.recargo,
-			creado: "Agendador",
-			tipoServicio: 'Plan Individual',
-			idServer: "",
-			subasta: true,
-			userid: this.user.uid,
+			destination: {lat: this.lat,lng: this.lng},
 			enviarCorreo: false,
-			fecha: this.serviceDate
+			estado: "Orden de servicio",
+			fecha: this.serviceDate,
+			fechaCreacion: Date.now(),
+			formaDePago: this.metodoPago,
+			hora: this.serviceStartTime,
+			horasDeServicio: this.helperService.horas,
+			id: Date.now(),
+			idServer: "",
+			otro: this.otro,
+			precio: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			tipoServicio: "Plan Individual",
+			total: this.mostrarTotalPrice,
+			userid: this.usuarioActivo.id
 		}
 		console.log(this.servicioAgendado)
-		this.guardarServicio(this.servicioAgendado)
+		//this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarBusinessCleaning() {
@@ -323,30 +341,43 @@ export class BookingComponent implements OnInit {
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
 			limpieza: true,
+			adulto: this.helperService.adulto,
+			reunion: this.helperService.eventos,
+			niños: this.helperService.menor,
+			alimentos: this.helperService.cooking,
+			mascota: this.helperService.mascota,
+			todero: this.helperService.todero,
 			direccion: this.user.locationAdress,
-			estado: 'Pendiente',
-			id: Date.now(),
-			fechaCreacion: Date.now(),
-			horasDeServicio: this.bussinesService.horas,
-			hora: this.serviceStartTime,
-			formaDePago: this.metodoPago,
-			precio: this.mostrarTotalPrice,
+			observaciones: this.user.adressHints,
+			cities: this.city ,
+			client: this.usuarioActivo,
+			country: this.country,
+			creado: "web",
+			department: this.department,
 			descuento: this.descuento,
-			total: this.mostrarTotalPrice,
-			recargo: this.recargo,
-			creado: "Agendador",
-			tipoServicio: 'Plan Individual',
-			idServer: "",
-			subasta: true,
-			userid: this.user.uid,
+			destination: {lat: this.lat,lng: this.lng},
 			enviarCorreo: false,
-			fecha: this.serviceDate
+			estado: "Orden de servicio",
+			fecha: this.serviceDate,
+			fechaCreacion: Date.now(),
+			formaDePago: this.metodoPago,
+			hora: this.serviceStartTime,
+			horasDeServicio: this.bussinesService.horas,
+			id: Date.now(),
+			idServer: "",
+			otro: this.otro,
+			precio: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			tipoServicio: "Plan Individual",
+			total: this.mostrarTotalPrice,
+			userid: this.usuarioActivo.id
 		}
+		this.servicioAgendado.limpieza = true;
 		if (this.bussinesService.cocinarTime > 0) {this.servicioAgendado.cafeteria = true}
 		if (this.bussinesService.meetingRoom == true) {this.servicioAgendado.reunion = true}
 		if (this.bussinesService.shopWindow == true) {this.servicioAgendado.limpiezaEstanteria = true}
 		console.log(this.servicioAgendado)
-		this.guardarServicio(this.servicioAgendado)
+		//this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarHomeCleaning() {
@@ -355,24 +386,36 @@ export class BookingComponent implements OnInit {
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
 			limpieza: true,
+			adulto: this.helperService.adulto,
+			reunion: this.helperService.eventos,
+			niños: this.helperService.menor,
+			alimentos: this.helperService.cooking,
+			mascota: this.helperService.mascota,
+			todero: this.helperService.todero,
 			direccion: this.user.locationAdress,
-			estado: 'Pendiente',
-			id: Date.now(),
-			fechaCreacion: Date.now(),
-			horasDeServicio: this.homeService.horas,
-			hora: this.serviceStartTime,
-			formaDePago: this.metodoPago,
-			precio: this.mostrarTotalPrice,
+			observaciones: this.user.adressHints,
+			cities: this.city ,
+			client: this.usuarioActivo,
+			country: this.country,
+			creado: "web",
+			department: this.department,
 			descuento: this.descuento,
-			total: this.mostrarTotalPrice,
-			recargo: this.recargo,
-			creado: "Agendador",
-			tipoServicio: 'Plan Individual',
-			idServer: "",
-			subasta: true,
-			userid: this.user.uid,
+			destination: {lat: this.lat,lng: this.lng},
 			enviarCorreo: false,
-			fecha: this.serviceDate
+			estado: "Orden de servicio",
+			fecha: this.serviceDate,
+			fechaCreacion: Date.now(),
+			formaDePago: this.metodoPago,
+			hora: this.serviceStartTime,
+			horasDeServicio: this.homeService.horas,
+			id: Date.now(),
+			idServer: "",
+			otro: this.otro,
+			precio: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			tipoServicio: "Plan Individual",
+			total: this.mostrarTotalPrice,
+			userid: this.usuarioActivo.id
 		}
 		if (this.homeService.cocinarTime > 0) {
 			this.servicioAgendado.alimentos = true
@@ -381,7 +424,7 @@ export class BookingComponent implements OnInit {
 		if (this.homeService.lavadoRopaTime > 0) {this.servicioAgendado.lavado = true}
 		if (this.homeService.planchadoTime > 0) {this.servicioAgendado.planchado = true}
 		console.log(this.servicioAgendado)
-		this.guardarServicio(this.servicioAgendado)
+//		this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarDisinfection() {
@@ -389,27 +432,39 @@ export class BookingComponent implements OnInit {
 		this.disinfectionService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
+			adulto: this.helperService.adulto,
+			reunion: this.helperService.eventos,
+			niños: this.helperService.menor,
+			alimentos: this.helperService.cooking,
+			mascota: this.helperService.mascota,
+			todero: this.helperService.todero,
 			direccion: this.user.locationAdress,
-			estado: 'Pendiente',
-			id: Date.now(),
-			fechaCreacion: Date.now(),
-			horasDeServicio: this.disinfectionService.horas,
-			hora: this.serviceStartTime,
-			formaDePago: this.metodoPago,
-			precio: this.mostrarTotalPrice,
+			observaciones: this.user.adressHints,
+			cities: this.city ,
+			client: this.usuarioActivo,
+			country: this.country,
+			creado: "web",
+			department: this.department,
 			descuento: this.descuento,
-			total: this.mostrarTotalPrice,
-			recargo: this.recargo,
-			creado: "Agendador",
-			tipoServicio: 'Plan Individual',
-			idServer: "",
-			subasta: true,
-			userid: this.user.uid,
+			destination: {lat: this.lat,lng: this.lng},
 			enviarCorreo: false,
-			fecha: this.serviceDate
+			estado: "Orden de servicio",
+			fecha: this.serviceDate,
+			fechaCreacion: Date.now(),
+			formaDePago: this.metodoPago,
+			hora: this.serviceStartTime,
+			horasDeServicio: this.mostrarTotalHoras,
+			id: Date.now(),
+			idServer: "",
+			otro: this.otro,
+			precio: this.mostrarTotalPrice,
+			recargo: this.recargo,
+			tipoServicio: "Plan Individual",
+			total: this.mostrarTotalPrice,
+			userid: this.usuarioActivo.id
 		}
 		console.log(this.servicioAgendado)
-		this.guardarServicio(this.servicioAgendado)
+		//this.guardarServicio(this.servicioAgendado)
 	}
 
 	public guardarServicio(servicio) {

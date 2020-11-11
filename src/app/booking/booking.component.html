@@ -36,9 +36,10 @@
 	<!-- Card #1 Seleccionar service-->
 	
 	<div class='contenedor'>
-		
-
-			<img src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;">
+		<img *ngIf="selectedService == 'Disinfection'" src="../../assets/Iconos XD/Iconos PNG/desinfeccionrect.jpeg" style="width: 100%;display: block;margin: auto;">
+		<img *ngIf="selectedService == 'BusinessCleaning'" src="../../assets/Iconos XD/Iconos PNG/aseoempresasrect.jpeg" style="width: 100%;display: block;margin: auto;">
+		<img *ngIf="selectedService == 'Helper'" src="../../assets/Iconos XD/Iconos PNG/asistenterect.jpeg" style="width: 100%;display: block;margin: auto;">
+			<img *ngIf="selectedService == 'HomeCleaning'" src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;">
 			<mat-form-field style="margin: unset !important;width: 100%;">
 				<mat-label>Selecciona un servicio</mat-label>
 				<mat-select [(ngModel)]="selectedService" (ngModelChange)="seleccionarServicio()">
@@ -46,9 +47,9 @@
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
-			<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
+			<!--<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
 				<button mat-button (click)="openDialog()">Click acá para ver que incluye tu servicio</button>
-			</div>
+			</div>-->
 		</div>	
 			<div class='contenedor'>
 	
@@ -126,13 +127,13 @@
 
 								<div class="row" style="margin:2px;width: 100%;">
 									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Cocina (45min base + extras)
+										Limpieza de cocina  (45min/c.u + extras)
 									</h5>
 								</div>
 							</mat-panel-title>
 							<mat-panel-description>
 								<select [(ngModel)]="homeService.kitchenTime" (ngModelChange)="homeServiceFactura()"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
+								style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;width: 40px;">
 									<option *ngFor="let cocina of tiempoCocinas" [value]="cocina.tiempo">
 										{{cocina.cantidad}}</option>
 								</select>
@@ -329,10 +330,10 @@
 			<div class="col-sm-6">
 				<div class="col-12" >
 					<div class="dropdown-divider"></div>
-					<h2 style="margin: 3px;text-align: center;font-weight: bolder;">
-						Horas sugeridas de servicio: {{mostrarTotalHoras}} Horas:Minutos
+					
+					<strong>Horas sugeridas de acuerdo a tu espacio y tus necesidades*:</strong>	 <h2 style="margin: 3px;text-align: center;font-weight: bolder;">{{mostrarTotalHoras}} Horas:Minutos	</h2>
 						<mat-form-field style="margin: 10px;width: 100%;">
-							<mat-label>Selecciona las horas de servicio </mat-label>
+							<mat-label style="font-size: large;">Selecciona las horas de servicio* </mat-label>
 							<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
 								<mat-option value=2 >2 horas</mat-option>
 							
@@ -344,7 +345,7 @@
 							
 							</mat-select>
 						</mat-form-field>
-					</h2>
+				
 				</div>	
 			</div>
 			
@@ -659,14 +660,14 @@
 					<mat-label>Por cuanto tiempo vas a necesitar la ayuda de tu SERVER® </mat-label>
 					<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
 						<mat-option value="2">2 horas</mat-option>
-						<mat-option value="3">3 horas</mat-option>
+					
 						<mat-option value="4">4 horas</mat-option>
-						<mat-option value="5">5 horas</mat-option>
+						
 						<mat-option value="6">6 horas</mat-option>
-						<mat-option value="7">7 horas</mat-option>
+						
 						<mat-option value="8">8 horas</mat-option>
-						<mat-option value="9">9 horas</mat-option>
-						<mat-option value="10">10 horas</mat-option>
+					
+					
 					</mat-select>
 				</mat-form-field>
 				<div class="dropdown-divider"></div>
@@ -696,6 +697,12 @@
 							Asistente de cocina
 						</mat-checkbox>
 					</div>
+
+					<div class="col-sm-3">
+						<mat-checkbox [(ngModel)]="helperService.todero">
+							Todero
+						</mat-checkbox>
+					</div>
 				</div>
 				<div class="dropdown-divider"></div>
 				<h1 style="margin: 3px;text-align: center;font-weight: bolder;">
@@ -712,7 +719,7 @@
 				<mat-slide-toggle [(ngModel)]="SameServer" style="font-size:medium; color:gray;margin-top: 20px;">Quiero a la ultima SERVER® que me atendió </mat-slide-toggle>
 			</div>
 			<h4 style="margin: 3px;color: rgb(161, 161, 161);margin: 10px;">Escribe un mensaje con instrucciones adicionales o requerimientos espaciales para tu SERVER®</h4>
-			<textarea type="text" style="margin-bottom: 20px; width: 100%;border-radius: 3px;margin: 10px;"
+			<textarea [(ngModel)]="otro" type="text" style="margin-bottom: 20px; width: 100%;border-radius: 3px;margin: 10px;"
 				placeholder="Ej: Quiero que limpies mis zapatos, no limpies el cuarto "></textarea>
 		</div>
 	</div>
@@ -847,7 +854,7 @@
 				</div>
 			</div>
 			<div class="col-12" style="width: 100%;">
-				<button type="button" (click)="agendar()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;">
+				<button type="button" (click)="agendarHelper()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;">
 					Confirmar y proceder a pago
 					<br>
 					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png" style="filter:invert(1);width:59px;margin-left: 1px;">
