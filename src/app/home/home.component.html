@@ -98,6 +98,17 @@
       </div>
       
   </div>
+  <div class="col-sm-12" style="width: 100%;">
+ 
+    <div class="card text-dark bg-warning" style="width:100%; border-radius: 10px; margin: auto;display: block;margin-top:20px;margin-bottom: 20px;">
+        <div class="card-body">
+      
+        <p class="card-text" style="display: block;margin: auto;"><img src="../../assets/Iconos XD/Iconos PNG/Planes.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.alimentos == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Cocinar.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.lavado == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Lavar.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.planchado == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Planchar.png" style="width:60px;margin: 5px;" alt="SERV®"> <br><strong>Fecha:</strong> {{proximoServicio.fecha}} <strong>Hora de inicio:</strong>  {{proximoServicio.hora}}:00 <br> <strong>Direccion:</strong> {{proximoServicio.direccion}} <br> <strong>Horas de servicio:</strong> {{proximoServicio.horasDeServicio}} Horas <strong>Valor:</strong>  {{proximoServicio.precio}}  </p>
+        <button class="btn btn-dark btn-block mt-1" style="font-size: small;">Comunicarse con logistica</button>
+      </div>
+    </div>
+    
+  </div>
   <hr style="color: blue;font-weight: bold;">
   <div class="row" style="padding: 20px;padding-bottom: 0px;padding-top: 0px;">
     <div class="col-sm-12" style="width: 100%;">

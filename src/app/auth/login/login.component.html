@@ -3,9 +3,10 @@
   
     <div id="formContent">
       <!-- Tabs Titles -->
-      <h2 class="active"> Inicia sesión </h2>
-      <h2 class="inactive underlineHover">Registrate </h2>
-
+      <button *ngIf="registro == false"   style="color: transparent;border-color: transparent;background-color: transparent;"><h2 class="active"> Inicia sesión </h2></button> 
+      <button *ngIf="registro == false" (click)="irRegistro()"  style="color: transparent;border-color: transparent;background-color: transparent;"><h2 class="inactive underlineHover">Registrate </h2></button> 
+      <button *ngIf="registro == true" (click)="irLogin()"  style="color: transparent;border-color: transparent;background-color: transparent;"><h2 class="inactive underlineHover"> Inicia sesión </h2></button> 
+      <button *ngIf="registro == true"  style="color: transparent;border-color: transparent;background-color: transparent;"><h2 class="active">Registrate </h2></button> 
       <!-- Icon -->
       <div class="fadeIn first">
         <img src="../../../assets/Intro-SERV-8.gif" style="filter: invert(0.5) brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5);" id="icon" alt="User Icon" />
@@ -14,27 +15,52 @@
 
 
       <!-- Remind Passowrd -->
-      <div id="formFooter">
+      <div id="formFooter" *ngIf="registro == false">
         <div class="row" style="margin-bottom: 10px;align-items: center;">
           <div class="col-12">
-            <button  class="btn btn-block btn-light shadow" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Facebook Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
+            <button  class="btn btn-block btn-light shadow" (click)="facebookLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Facebook Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
   
           </div>
           <div class="col-12">
-            <button  class="btn btn-block btn-light shadow-lg" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto" > <img src="../../../assets/Iconos XD/Iconos PNG/Google Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
+            <button  class="btn btn-block btn-light shadow-lg" (click)="googleLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Google Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
+  
+          </div>
+          <div class="col-12">
+            <button  class="btn btn-block btn-light shadow-lg" (click)="irInicioServ()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px; padding:8px;border-color:black" > <img src="../../../assets/Intro-SERV-8.gif" style="filter: invert(0.5) brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5);width: 40px;" alt="User Icon" />
+              <strong>Inicia sesión con SERV®</strong> </button>
   
           </div>
       </div>
+      <div id="formFooter" *ngIf="inicioCorreo == true">
+      
         <!-- Login Form -->
       <form>
-        <input type="text" id="login" class="fadeIn second" name="login" [(ngModel)]="UserEmail" placeholder="Email">
-        <input type="text" id="password" class="fadeIn third" name="login" [(ngModel)]="UserPassword" placeholder="Password">
+         <input type="text" id="login2" class="fadeIn second" name="login2" [(ngModel)]="UserEmail2" placeholder="Correo">
+        <input type="text" id="password2" class="fadeIn second" name="password2" [(ngModel)]="UserPassword2" placeholder="Contraseña">
         <button type="submit" (click)="loginemail()" class="btn btn-secondary" style="width: 85%;height: 55px;margin-top: 5px;" >Iniciar sesión</button>
       </form>
 
         <a class="text-primary" href="#">Olvidaste tu contraseña?</a>
       </div>
+      </div>
 
+      <div id="formFooter" *ngIf="registro == true">
+      
+        <!-- Login Form -->
+      <form>
+        <input type="text" id="nombre" class="fadeIn second" name="login" [(ngModel)]="UserName" placeholder="Nombre">
+        <input type="text" id="LastName" class="fadeIn second" name="login" [(ngModel)]="UserLastName" placeholder="Apellido" >
+        <input type="text" id="Phone" class="fadeIn second" name="login" [(ngModel)]="UserPhone" placeholder="Teléfono" >
+        <select required="required" class="fadeIn second" style="border-radius: 4px;padding: 10px;font-size: large;" name="login" id="city" [(ngModel)]="UserCity" aria-required="true"><option value="" selected> Elige tu ciudad</option>
+          <option value="Bogotá"> Bogotá, Colombia.</option>
+          <option value="Medellín">Medellín, Colombia.</option></select>
+         <input type="text" id="login" class="fadeIn second" name="login" [(ngModel)]="UserEmail" placeholder="Correo">
+        <input type="text" id="password" class="fadeIn second" name="login" [(ngModel)]="UserPassword" placeholder="Contraseña">
+        <button type="submit" (click)="crearUsuario()" class="btn btn-secondary" style="width: 85%;height: 55px;margin-top: 5px;" >Crear cuenta y continuar</button>
+      </form>
+
+       
+      </div>
     </div>
   </div>
 </div>

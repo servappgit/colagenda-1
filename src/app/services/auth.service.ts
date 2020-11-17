@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpModule, Http, Headers } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -49,7 +50,6 @@ export class AuthService {
       email: datos.email,
       telefono: datos.telefono,
       rol: datos.rol,
-      tipo: datos.tipoUser,
       estado: 'activo',
       fecha: Date.now(),
     };
@@ -129,5 +129,9 @@ export class AuthService {
   getLoggedInUser(){
     return this.afAuth.authState;
     
+  }
+
+  public getServiciosUsuario(id) {
+    return firebase.firestore().collection('servicios').where('userid', '==', id).get();
   }
 }
