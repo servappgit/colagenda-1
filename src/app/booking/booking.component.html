@@ -1,16 +1,16 @@
  <!-- BARRA DE NAVEGACION SUPERIOR -->
   
  <nav class="navbar navbar-dark navbar-expand-md" style="max-width:100%; background-color: #000033;padding-left:0px;padding-right:0px">
-	<a class="navbar-brand" href="/"><img src="../../assets/Intro-SERV-8.gif" style="width:50px" alt="SERV®"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-	  <span class="navbar-toggler-icon"></span>
+	<button class="navbar-toggler" type="button" (click)="volver()">
+		<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+		  </svg>
 	</button>
-	<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
-		<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
-			<img src="../../assets/Iconos XD/Iconos PNG/Card Planes.png" style="width: 100%;display: block;margin: auto;">
-			<img src="../../assets/Iconos XD/Iconos PNG/Card Referidos.png" style="width: 100%;display: block;margin: auto;">
-		 </div>
-	 </div>
+<a class="navbar-brand" href="/"><img src="../../assets/Intro-SERV-8.gif" style="width:50px" alt="SERV®"></a>
+
+<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
+
+ </div>
  
 	 
    
@@ -25,8 +25,7 @@
 	<a class="navbar-brand" href="/"><img src="../../assets/Intro-SERV-8.gif" style="width:50px" alt="SERV®"></a>
 
 	<div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar" style="padding-left: 100px;">
-		<img src="../../assets/Iconos XD/Iconos PNG/Card Planes.png" style="width: 100%;display: block;margin: auto;">
-		<img src="../../assets/Iconos XD/Iconos PNG/Card Referidos.png" style="width: 100%;display: block;margin: auto;">
+	
 	 </div>
  
 	
@@ -34,831 +33,854 @@
    </nav> 
 	</div>
 	<!-- Card #1 Seleccionar service-->
-	
-	<div class='contenedor'>
-		<img *ngIf="selectedService == 'Disinfection'" src="../../assets/Iconos XD/Iconos PNG/desinfeccionrect.jpeg" style="width: 100%;display: block;margin: auto;">
-		<img *ngIf="selectedService == 'BusinessCleaning'" src="../../assets/Iconos XD/Iconos PNG/aseoempresasrect.jpeg" style="width: 100%;display: block;margin: auto;">
-		<img *ngIf="selectedService == 'Helper'" src="../../assets/Iconos XD/Iconos PNG/asistenterect.jpeg" style="width: 100%;display: block;margin: auto;">
-			<img *ngIf="selectedService == 'HomeCleaning'" src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;">
-			<mat-form-field style="margin: unset !important;width: 100%;">
-				<mat-label>Selecciona un servicio</mat-label>
-				<mat-select [(ngModel)]="selectedService" (ngModelChange)="seleccionarServicio()">
-					<mat-option *ngFor="let servicio of servicios" [value]="servicio.tipo">{{servicio.nombre}}
-					</mat-option>
-				</mat-select>
-			</mat-form-field>
-			<!--<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
-				<button mat-button (click)="openDialog()">Click acá para ver que incluye tu servicio</button>
-			</div>-->
-		</div>	
-			<div class='contenedor'>
-	
-		<div class="row">
-			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">1. Fecha y hora</h2>
-			</div>
-			
-			<div class="col-sm-6">
-				
+<div class="row">
+	<div class="col-sm-6" style="display: block;margin: auto;">
+		<div class='contenedor'>
+			<img *ngIf="selectedService == 'Disinfection'" src="../../assets/Iconos XD/Iconos PNG/desinfeccionrect.jpeg" style="width: 100%;display: block;margin: auto;">
+			<img *ngIf="selectedService == 'BusinessCleaning'" src="../../assets/Iconos XD/Iconos PNG/aseoempresasrect.jpeg" style="width: 100%;display: block;margin: auto;">
+			<img *ngIf="selectedService == 'Helper'" src="../../assets/Iconos XD/Iconos PNG/asistenterect.jpeg" style="width: 100%;display: block;margin: auto;">
+				<img *ngIf="selectedService == 'HomeCleaning'" src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;">
 				<mat-form-field style="margin: unset !important;width: 100%;">
-					<mat-label>¿Para cuándo necesitas tu servicio?</mat-label>
-					<input matInput type="date" [(ngModel)]="serviceDate" placeholder="When do you need your service"
-						required>
-				</mat-form-field>
-				<mat-form-field style="margin: unset !important;width: 100%;">
-					<mat-label>Selecciona una hora de inicio</mat-label>
-					<mat-select [(ngModel)]="serviceStartTime" (ngModelChange)="seleccionarServicio()">
-						<mat-option *ngFor="let horario of horaServicios" [value]="horario.valor">{{horario.hora}}
+					<mat-label>Selecciona un servicio</mat-label>
+					<mat-select [(ngModel)]="selectedService" (ngModelChange)="seleccionarServicio()">
+						<mat-option *ngFor="let servicio of servicios" [value]="servicio.tipo">{{servicio.nombre}}
 						</mat-option>
 					</mat-select>
 				</mat-form-field>
+				<!--<div class="card p-1 m-3 bg-light text-secondary" style="font-size: xx-small;margin: 0px 0px 20px !important">
+					<button mat-button (click)="openDialog()">Click acá para ver que incluye tu servicio</button>
+				</div>-->
+			</div>	
+				<div class='contenedor'>
+		
+			<div class="row">
+				<div class="col-12">
+					<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">1. Fecha y hora</h2>
+				</div>
+				
+				<div class="col-sm-6">
+					
+					<mat-form-field style="margin: unset !important;width: 100%;">
+						<mat-label>¿Para cuándo necesitas tu servicio?</mat-label>
+						<input matInput type="date" [(ngModel)]="serviceDate" placeholder="When do you need your service"
+							required>
+					</mat-form-field>
+					<mat-form-field style="margin: unset !important;width: 100%;">
+						<mat-label>Selecciona una hora de inicio</mat-label>
+						<mat-select [(ngModel)]="serviceStartTime" (ngModelChange)="seleccionarServicio()">
+							<mat-option *ngFor="let horario of horaServicios" [value]="horario.valor">{{horario.hora}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Card #2 HOME customizar servicio-->
-	<div *ngIf="selectedService == 'HomeCleaning'" class="contenedor">
-		<div class="row">
-			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Horas de servicio</h2>
-				
-			</div>
-			<div class="col-sm-6">
-				<div class="row" style="margin:2px;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area total (20min/50m2)
-									</h5>
-								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="homeService.spaceAreaTime" (ngModelChange)="homeServiceFactura()"
-									id="areapisotiempo"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
-									<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
-										{{area.metros}}</option>
-								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
-							</div>
-							<div class="col-sm">
-								<p>✔ Barrido y trapeado de todos los pisos </p>
-								<p>✔ Cambio y limpieza de basuras </p>
-								<p>✔ Limpieza de polvo sobre las superficies </p>
-							</div>
-							<div class="col-sm">
-								<p>✔ Limpieza de polvo sobre y debajo de muebles</p>
-								<p>✔ Limpieza de comedor</p>
-								<p>✔ Limpieza de switches y manijas</p>
-							</div>
-						</div>
-					</mat-expansion-panel>
+		<!-- Card #2 HOME customizar servicio-->
+		<div *ngIf="selectedService == 'HomeCleaning'" class="contenedor">
+			<div class="row">
+				<div class="col-12">
+					<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Horas de servicio</h2>
+					
 				</div>
-				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Limpieza de cocina  (45min/c.u + extras)
-									</h5>
+				<div class="col-sm-6">
+					<div class="row" style="margin:2px;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+	
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Area total (20min/50m2)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="homeService.spaceAreaTime" (ngModelChange)="homeServiceFactura()"
+										id="areapisotiempo"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
+										<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
+											{{area.metros}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="homeService.kitchenTime" (ngModelChange)="homeServiceFactura()"
-								style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;width: 40px;">
-									<option *ngFor="let cocina of tiempoCocinas" [value]="cocina.tiempo">
-										{{cocina.cantidad}}</option>
-								</select>
-							</mat-panel-description>
-
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
-							</div>
-							<div class="col">
-								<p>✔ Limpieza de refrigerador afuera </p>
-								<p>✔ Limpieza de mesones </p>
-								<p>✔ Limpieza de apliques en madera y muebles</p>
-								<p>✔ Limpieza de sifón</p>
-							</div>
-							<div class="col">
-								<p>✔ Limpieza de estufa </p>
-								<p>✔ Limpieza de microhondas </p>
-								<p>✔ Limpieza de superficies metalicas </p>
-								<p>✔ Limpieza de hornos y electrodomesticos superficial</p>
-							</div>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<p>
-								Lavado de platos (10min/10pcs)
-							</p>
-							<select name="selectLavadoPlatos" [(ngModel)]="homeService.lavadoPlatosTime"
-								(ngModelChange)="homeServiceFactura()"
-								style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-								<option *ngFor="let plato of tiempoPlatos" [value]="plato.tiempo">
-									{{plato.cantidad}}</option>
-							</select>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<p>
-								Preparacion de alimentos (30min/meal)
-							</p>
-							<select name="selectCocinar" [(ngModel)]="homeService.cocinarTime"
-								(ngModelChange)="homeServiceFactura()"
-								style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-								<option *ngFor="let comida of tiemposComida" [value]="comida.tiempo">
-									{{comida.tipo}}</option>
-							</select>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<p>
-								lavado de ropa (lavado y doblado)(20min/load)
-							</p>
-							<select name="selectLavadoRopa" [(ngModel)]="homeService.lavadoRopaTime"
-								(ngModelChange)="homeServiceFactura()"
-								style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-								<option *ngFor="let lavanderia of tiempoLavanderia" [value]="lavanderia.tiempo">
-									{{lavanderia.cantidad}}</option>
-							</select>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<mat-checkbox [(ngModel)]="homeService.cleanKitchen" style="margin-left: 0px;"
-								(ngModelChange)="homeServiceFactura()">Limpiar dentro de los gabinetes +20min
-							</mat-checkbox>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<mat-checkbox [(ngModel)]="homeService.cleanOven" style="margin-left: 0px;"
-								(ngModelChange)="homeServiceFactura()">Limpiar dentro del horno +15min</mat-checkbox>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<mat-checkbox [(ngModel)]="homeService.cleanFridge" style="margin-left: 0px;"
-								(ngModelChange)="homeServiceFactura()">Limpiar dentro de la nevera +45min</mat-checkbox>
-						</div>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Baños a limpiar (30min/c.u)
-									</h5>
+								<div class="col-sm">
+									<p>✔ Barrido y trapeado de todos los pisos </p>
+									<p>✔ Cambio y limpieza de basuras </p>
+									<p>✔ Limpieza de polvo sobre las superficies </p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select name="selectBathrooms" [(ngModel)]="homeService.bathroomsTime"
-									(ngModelChange)="homeServiceFactura()"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px">
-									<option *ngFor="let bano of tiempoBanos" [value]="bano.tiempo">
-										{{bano.cantidad}}</option>
-								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
-							</div>
-							<div class="col">
-								<p>✔ Limpieza de mesones y estantes </p>
-								<p>✔ Limpieza profunda inodoro </p>
-								<p>✔ Limpieza de lavamanos </p>
-							</div>
-							<div class="col">
-								<p>✔ Limpieza de sifones</p>
-								<p>✔ Limpieza de duchas y bañeras </p>
-								<p>✔ Limpieza de vidrios </p>
-							</div>
-						</div>
-						<mat-checkbox style="margin-left: 10px;font-size: smaller;"
-							[(ngModel)]="homeService.cleanInside" (ngModelChange)="homeServiceFactura()">
-							Limpiar dentro del gabinete + 15min
-						</mat-checkbox>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-
-
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Cuartos a limpiar (30min/c.u)
-									</h5>
+								<div class="col-sm">
+									<p>✔ Limpieza de polvo sobre y debajo de muebles</p>
+									<p>✔ Limpieza de comedor</p>
+									<p>✔ Limpieza de switches y manijas</p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="homeService.bedroomsTime" id="cuartostiempo"
-									(ngModelChange)="homeServiceFactura()"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;">
-									<option *ngFor="let cuarto of tiempoCuartos" [value]="cuarto.tiempo">
-										{{cuarto.cantidad}}
-									</option>
-								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
 							</div>
-							<div class="col">
-								<p>✔ Barrido y trapeado del piso </p>
-								<p>✔ Hacer la cama y reordenar cuarto </p>
-								<p>✔ Limpieza de muebles y repisas </p>
-								<p>✔ Cambio de sabanas</p>
-							</div>
-						</div>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">Adicionales y otras
-										areas</h5>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;width: 100%">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+	
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Limpieza de cocina  (45min/c.u + extras)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="homeService.kitchenTime" (ngModelChange)="homeServiceFactura()"
+									style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;width: 40px;">
+										<option *ngFor="let cocina of tiempoCocinas" [value]="cocina.tiempo">
+											{{cocina.cantidad}}</option>
+									</select>
+								</mat-panel-description>
+	
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="margin-left:0px;width: 100%;font-size: smaller">
-							<div class="col-sm" style="padding-left: unset;">
-								<mat-checkbox [(ngModel)]="homeService.studio" (ngModelChange)="homeServiceFactura()">
-									Limpieza del estudio +20min</mat-checkbox>
-								<mat-checkbox [(ngModel)]="homeService.garage" (ngModelChange)="homeServiceFactura()">
-									Limpieza del garage o sotano + 1h</mat-checkbox>
-								<mat-checkbox [(ngModel)]="homeService.windowDeep"
-									(ngModelChange)="homeServiceFactura()">
-									Limpieza profunda de vidrios + 45min
-								</mat-checkbox>
+								<div class="col">
+									<p>✔ Limpieza de refrigerador afuera </p>
+									<p>✔ Limpieza de mesones </p>
+									<p>✔ Limpieza de apliques en madera y muebles</p>
+									<p>✔ Limpieza de sifón</p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza de estufa </p>
+									<p>✔ Limpieza de microhondas </p>
+									<p>✔ Limpieza de superficies metalicas </p>
+									<p>✔ Limpieza de hornos y electrodomesticos superficial</p>
+								</div>
 							</div>
-							<div class="col-sm">
-								<mat-checkbox [(ngModel)]="homeService.balcon" (ngModelChange)="homeServiceFactura()">
-									Limpieza de balcón +30min</mat-checkbox>
-								<mat-checkbox [(ngModel)]="homeService.jardin" (ngModelChange)="homeServiceFactura()">
-									Limpieza de jardín y patios + 1h</mat-checkbox>
-							</div>
-							<div class="row" style="margin:2px;width: 100%;">
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
 								<p>
-									Planchado (30min/15pcs)
+									Lavado de platos (10min/10pcs)
 								</p>
-								<select name="selectPlanchado" [(ngModel)]="homeService.planchadoTime"
+								<select name="selectLavadoPlatos" [(ngModel)]="homeService.lavadoPlatosTime"
 									(ngModelChange)="homeServiceFactura()"
 									style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-									<option *ngFor="let planchado of tiempoPlanchado" [value]="planchado.tiempo">
-										{{planchado.piezas}}</option>
+									<option *ngFor="let plato of tiempoPlatos" [value]="plato.tiempo">
+										{{plato.cantidad}}</option>
 								</select>
 							</div>
-						</div>
-					</mat-expansion-panel>
-				</div>
-
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<p>
+									Preparacion de alimentos (30min/meal)
+								</p>
+								<select name="selectCocinar" [(ngModel)]="homeService.cocinarTime"
+									(ngModelChange)="homeServiceFactura()"
+									style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
+									<option *ngFor="let comida of tiemposComida" [value]="comida.tiempo">
+										{{comida.tipo}}</option>
+								</select>
+							</div>
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<p>
+									lavado de ropa (lavado y doblado)(20min/load)
+								</p>
+								<select name="selectLavadoRopa" [(ngModel)]="homeService.lavadoRopaTime"
+									(ngModelChange)="homeServiceFactura()"
+									style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
+									<option *ngFor="let lavanderia of tiempoLavanderia" [value]="lavanderia.tiempo">
+										{{lavanderia.cantidad}}</option>
+								</select>
+							</div>
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<mat-checkbox [(ngModel)]="homeService.cleanKitchen" style="margin-left: 0px;"
+									(ngModelChange)="homeServiceFactura()">Limpiar dentro de los gabinetes +20min
+								</mat-checkbox>
+							</div>
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<mat-checkbox [(ngModel)]="homeService.cleanOven" style="margin-left: 0px;"
+									(ngModelChange)="homeServiceFactura()">Limpiar dentro del horno +15min</mat-checkbox>
+							</div>
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<mat-checkbox [(ngModel)]="homeService.cleanFridge" style="margin-left: 0px;"
+									(ngModelChange)="homeServiceFactura()">Limpiar dentro de la nevera +45min</mat-checkbox>
+							</div>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
 	
-			</div>
-			<div class="col-sm-6">
-				<div class="col-12" >
-					<div class="dropdown-divider"></div>
-					
-					<strong>Horas sugeridas de acuerdo a tu espacio y tus necesidades*:</strong>	 <h2 style="margin: 3px;text-align: center;font-weight: bolder;">{{mostrarTotalHoras}} Horas:Minutos	</h2>
-						<mat-form-field style="margin: 10px;width: 100%;">
-							<mat-label style="font-size: large;">Selecciona las horas de servicio* </mat-label>
-							<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
-								<mat-option value=2 >2 horas</mat-option>
-							
-								<mat-option value=4 >4 horas</mat-option>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Baños a limpiar (30min/c.u)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select name="selectBathrooms" [(ngModel)]="homeService.bathroomsTime"
+										(ngModelChange)="homeServiceFactura()"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px">
+										<option *ngFor="let bano of tiempoBanos" [value]="bano.tiempo">
+											{{bano.cantidad}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza de mesones y estantes </p>
+									<p>✔ Limpieza profunda inodoro </p>
+									<p>✔ Limpieza de lavamanos </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza de sifones</p>
+									<p>✔ Limpieza de duchas y bañeras </p>
+									<p>✔ Limpieza de vidrios </p>
+								</div>
+							</div>
+							<mat-checkbox style="margin-left: 10px;font-size: smaller;"
+								[(ngModel)]="homeService.cleanInside" (ngModelChange)="homeServiceFactura()">
+								Limpiar dentro del gabinete + 15min
+							</mat-checkbox>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+	
+	
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Cuartos a limpiar (30min/c.u)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="homeService.bedroomsTime" id="cuartostiempo"
+										(ngModelChange)="homeServiceFactura()"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;">
+										<option *ngFor="let cuarto of tiempoCuartos" [value]="cuarto.tiempo">
+											{{cuarto.cantidad}}
+										</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
+								</div>
+								<div class="col">
+									<p>✔ Barrido y trapeado del piso </p>
+									<p>✔ Hacer la cama y reordenar cuarto </p>
+									<p>✔ Limpieza de muebles y repisas </p>
+									<p>✔ Cambio de sabanas</p>
+								</div>
+							</div>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;width: 100%">
+						<mat-expansion-panel style="margin:2px;width: 100%;">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">Adicionales y otras
+											areas</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="margin-left:0px;width: 100%;font-size: smaller">
+								<div class="col-sm" style="padding-left: unset;">
+									<mat-checkbox [(ngModel)]="homeService.studio" (ngModelChange)="homeServiceFactura()">
+										Limpieza del estudio +20min</mat-checkbox>
+									<mat-checkbox [(ngModel)]="homeService.garage" (ngModelChange)="homeServiceFactura()">
+										Limpieza del garage o sotano + 1h</mat-checkbox>
+									<mat-checkbox [(ngModel)]="homeService.windowDeep"
+										(ngModelChange)="homeServiceFactura()">
+										Limpieza profunda de vidrios + 45min
+									</mat-checkbox>
+								</div>
+								<div class="col-sm">
+									<mat-checkbox [(ngModel)]="homeService.balcon" (ngModelChange)="homeServiceFactura()">
+										Limpieza de balcón +30min</mat-checkbox>
+									<mat-checkbox [(ngModel)]="homeService.jardin" (ngModelChange)="homeServiceFactura()">
+										Limpieza de jardín y patios + 1h</mat-checkbox>
+								</div>
+								<div class="row" style="margin:2px;width: 100%;">
+									<p>
+										Planchado (30min/15pcs)
+									</p>
+									<select name="selectPlanchado" [(ngModel)]="homeService.planchadoTime"
+										(ngModelChange)="homeServiceFactura()"
+										style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
+										<option *ngFor="let planchado of tiempoPlanchado" [value]="planchado.tiempo">
+											{{planchado.piezas}}</option>
+									</select>
+								</div>
+							</div>
+						</mat-expansion-panel>
+					</div>
+	
+		
+				</div>
+				<div class="col-sm-6">
+					<div class="col-12" >
+						<div class="dropdown-divider"></div>
 						
-								<mat-option value=6 >6 horas</mat-option>
+						<strong>Horas sugeridas de acuerdo a tu espacio y tus necesidades*:</strong>	 <h2 style="margin: 3px;text-align: center;font-weight: bolder;">{{mostrarTotalHoras}} Horas:Minutos	</h2>
+							<mat-form-field style="margin: 10px;width: 100%;">
+								<mat-label style="font-size: large;">Selecciona las horas de servicio* </mat-label>
+								<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
+									<mat-option value=2 >2 horas</mat-option>
+								
+									<mat-option value=4 >4 horas</mat-option>
 							
-								<mat-option value=8 >8 horas</mat-option>
-							
-							</mat-select>
-						</mat-form-field>
+									<mat-option value=6 >6 horas</mat-option>
+								
+									<mat-option value=8 >8 horas</mat-option>
+								
+								</mat-select>
+							</mat-form-field>
+					
+					</div>	
+				</div>
 				
-				</div>	
 			</div>
-			
 		</div>
-	</div>
-	<!-- Card #2 BUSINESS customizar servicio-->
-	<div *ngIf="selectedService == 'BusinessCleaning'" class="contenedor">
-		<div class="row">
-			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Customiza y selecciona las horas</h2>
-			</div>
-			<div class="col-sm-6">
-				<div class="row" style="margin:2px;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area total (20min/500ft2)
-									</h5>
-								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="bussinesService.spaceAreaTime"
-									(ngModelChange)="bussinesServiceFactura()" id="areapisotiempo"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
-									<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
-										{{area.metros}}</option>
-								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Includes:</strong> </p>
-							</div>
-							<div class="col-sm">
-								<p>✔ Limpieza y trapeado de pisos </p>
-								<p>✔ Cambio y limpieza de basuras </p>
-								<p>✔ Limpieza de polvo sobre las superficies</p>
-							</div>
-							<div class="col-sm">
-								<p>✔ Limpieza de polvo sobre muebles y estantes</p>
-								<p>✔ Limpieza de mesas de trabajo</p>
-								<p>✔ Limpieza de switches y manijas</p>
-							</div>
-						</div>
-					</mat-expansion-panel>
+		<!-- Card #2 BUSINESS customizar servicio-->
+		<div *ngIf="selectedService == 'BusinessCleaning'" class="contenedor">
+			<div class="row">
+				<div class="col-12">
+					<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Customiza y selecciona las horas</h2>
 				</div>
-				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Servicios de cafetería
-									</h5>
+				<div class="col-sm-6">
+					<div class="row" style="margin:2px;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+	
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Area total (20min/500ft2)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="bussinesService.spaceAreaTime"
+										(ngModelChange)="bussinesServiceFactura()" id="areapisotiempo"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
+										<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
+											{{area.metros}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Includes:</strong> </p>
 								</div>
-							</mat-panel-title>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
-							</div>
-							<div class="col">
-								<p>✔ Limpieza del area de cafeteria </p>
-								<p>✔ Lavado de platos y utencilios </p>
-								<p>✔ Limpieza de mesones y electrodomesticos</p>
-								<p>✔ Limpieza de mesas </p>
-							</div>
-							<div class="col">
-								<p>✔ Preparación de cafés y otras bebidas</p>
-								<p>✔ Preparacion de meriendas</p>
-								<p>✔ Servir bebidas o meriendas a invitados o colaboradores</p>
-								<p>✔ Atención personalizada de reuniones </p>
-							</div>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<p>
-								Lavado de platos/vasos (10min/10pcs)
-							</p>
-							<select name="selectLavadoPlatos" [(ngModel)]="bussinesService.lavadoPlatosTime"
-								(ngModelChange)="bussinesServiceFactura()"
-								style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-								<option *ngFor="let plato of tiempoPlatos" [value]="plato.tiempo">
-									{{plato.cantidad}}</option>
-							</select>
-						</div>
-						<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
-							<p>
-								Preparacion de meriendas para invitados o colaboradores (30min/meal)
-							</p>
-							<select name="selectCocinar" [(ngModel)]="bussinesService.cocinarTime"
-								(ngModelChange)="bussinesServiceFactura()"
-								style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
-								<option *ngFor="let comida of tiemposComida" [value]="comida.tiempo">
-									{{comida.tipo}}</option>
-							</select>
-						</div>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Escritorios a limpiar (10min/each)
-									</h5>
+								<div class="col-sm">
+									<p>✔ Limpieza y trapeado de pisos </p>
+									<p>✔ Cambio y limpieza de basuras </p>
+									<p>✔ Limpieza de polvo sobre las superficies</p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select name="selectBathrooms" [(ngModel)]="bussinesService.desks"
+								<div class="col-sm">
+									<p>✔ Limpieza de polvo sobre muebles y estantes</p>
+									<p>✔ Limpieza de mesas de trabajo</p>
+									<p>✔ Limpieza de switches y manijas</p>
+								</div>
+							</div>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;width: 100%">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Servicios de cafetería
+										</h5>
+									</div>
+								</mat-panel-title>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza del area de cafeteria </p>
+									<p>✔ Lavado de platos y utencilios </p>
+									<p>✔ Limpieza de mesones y electrodomesticos</p>
+									<p>✔ Limpieza de mesas </p>
+								</div>
+								<div class="col">
+									<p>✔ Preparación de cafés y otras bebidas</p>
+									<p>✔ Preparacion de meriendas</p>
+									<p>✔ Servir bebidas o meriendas a invitados o colaboradores</p>
+									<p>✔ Atención personalizada de reuniones </p>
+								</div>
+							</div>
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<p>
+									Lavado de platos/vasos (10min/10pcs)
+								</p>
+								<select name="selectLavadoPlatos" [(ngModel)]="bussinesService.lavadoPlatosTime"
 									(ngModelChange)="bussinesServiceFactura()"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px">
-									<option *ngFor="let desk of tiempoDesk" [value]="desk.tiempo">
-										{{desk.cantidad}}</option>
+									style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
+									<option *ngFor="let plato of tiempoPlatos" [value]="plato.tiempo">
+										{{plato.cantidad}}</option>
 								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
 							</div>
-							<div class="col">
-								<p>✔ Limpieza de superficies</p>
-								<p>✔ Limpieza de computadores superficial</p>
-								<p>✔ Limpieza de archivadores u ordenadores </p>
-							</div>
-							<div class="col">
-								<p>✔ Orden y recoleccion de documentos</p>
-								<p>✔ No tiramos a la basura sus documentos</p>
-								<p>✔ Limpieza de vidrios o separadores</p>
-							</div>
-						</div>
-						<mat-checkbox style="margin-left: 10px;font-size: smaller;"
-							[(ngModel)]="bussinesService.cleanInside" (ngModelChange)="bussinesServiceFactura()">
-							Limpieza profunda de archivadores o gabinetes + 15min
-						</mat-checkbox>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Limpieza de oficinas cerradas (30min/each)
-									</h5>
-								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="bussinesService.officeCleanUp" id="cuartostiempo"
+							<div class="row" style="margin:2px;width: 100%;font-size: smaller;">
+								<p>
+									Preparacion de meriendas para invitados o colaboradores (30min/meal)
+								</p>
+								<select name="selectCocinar" [(ngModel)]="bussinesService.cocinarTime"
 									(ngModelChange)="bussinesServiceFactura()"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;">
-									<option *ngFor="let cuarto of tiempoCuartos" [value]="cuarto.tiempo">
-										{{cuarto.cantidad}}
-									</option>
+									style="font-size: x-small; height: 20px;margin-left: 15px;margin-top: 2px;border-radius: 4px;">
+									<option *ngFor="let comida of tiemposComida" [value]="comida.tiempo">
+										{{comida.tipo}}</option>
 								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="font-size: smaller;">
-							<div class="col-12">
-								<p><strong>Incluye:</strong> </p>
 							</div>
-							<div class="col">
-								<p>✔ Limpieza y trapeado del piso</p>
-								<p>✔ Limpieza del escritorio</p>
-								<p>✔ Limpieza superficial de computadores y equipos</p>
-								<p>✔ Limpieza de vidrios y ventanas </p>
-								<p>✔ Orden y recoleccion de documentos</p>
-								<p>✔ No tiramos a la basura sus documentos</p>
-							</div>
-						</div>
-					</mat-expansion-panel>
-				</div>
-				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">Adicionales y asistencia de reuniones</h5>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Escritorios a limpiar (10min/each)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select name="selectBathrooms" [(ngModel)]="bussinesService.desks"
+										(ngModelChange)="bussinesServiceFactura()"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px">
+										<option *ngFor="let desk of tiempoDesk" [value]="desk.tiempo">
+											{{desk.cantidad}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
 								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						<div class="row" style="margin-left:0px;width: 100%;font-size: smaller">
-							<div class="col-sm" style="padding-left: unset;">
-								<mat-checkbox [(ngModel)]="bussinesService.shopWindow"
-									(ngModelChange)="bussinesServiceFactura()">
-									Limpieza de vitrinas + 20 min
-								</mat-checkbox>
+								<div class="col">
+									<p>✔ Limpieza de superficies</p>
+									<p>✔ Limpieza de computadores superficial</p>
+									<p>✔ Limpieza de archivadores u ordenadores </p>
+								</div>
+								<div class="col">
+									<p>✔ Orden y recoleccion de documentos</p>
+									<p>✔ No tiramos a la basura sus documentos</p>
+									<p>✔ Limpieza de vidrios o separadores</p>
+								</div>
 							</div>
-							<div class="col-sm" style="padding-left: unset;">
-								<mat-checkbox [(ngModel)]="bussinesService.meetingRoom"
-									(ngModelChange)="bussinesServiceFactura()">
-									Limpieza de sala de juntas + 20 min
-								</mat-checkbox>
+							<mat-checkbox style="margin-left: 10px;font-size: smaller;"
+								[(ngModel)]="bussinesService.cleanInside" (ngModelChange)="bussinesServiceFactura()">
+								Limpieza profunda de archivadores o gabinetes + 15min
+							</mat-checkbox>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Limpieza de oficinas cerradas (30min/each)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="bussinesService.officeCleanUp" id="cuartostiempo"
+										(ngModelChange)="bussinesServiceFactura()"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px;">
+										<option *ngFor="let cuarto of tiempoCuartos" [value]="cuarto.tiempo">
+											{{cuarto.cantidad}}
+										</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza y trapeado del piso</p>
+									<p>✔ Limpieza del escritorio</p>
+									<p>✔ Limpieza superficial de computadores y equipos</p>
+									<p>✔ Limpieza de vidrios y ventanas </p>
+									<p>✔ Orden y recoleccion de documentos</p>
+									<p>✔ No tiramos a la basura sus documentos</p>
+								</div>
 							</div>
-						</div>
-					</mat-expansion-panel>
-				</div>
-			
-
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;width: 100%">
+						<mat-expansion-panel style="margin:2px;width: 100%;">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">Adicionales y asistencia de reuniones</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="margin-left:0px;width: 100%;font-size: smaller">
+								<div class="col-sm" style="padding-left: unset;">
+									<mat-checkbox [(ngModel)]="bussinesService.shopWindow"
+										(ngModelChange)="bussinesServiceFactura()">
+										Limpieza de vitrinas + 20 min
+									</mat-checkbox>
+								</div>
+								<div class="col-sm" style="padding-left: unset;">
+									<mat-checkbox [(ngModel)]="bussinesService.meetingRoom"
+										(ngModelChange)="bussinesServiceFactura()">
+										Limpieza de sala de juntas + 20 min
+									</mat-checkbox>
+								</div>
+							</div>
+						</mat-expansion-panel>
+					</div>
 				
+	
+					
+					
+				</div>
+				<div class="col-sm-6">
+					<div class="col-12" >
+						<div class="dropdown-divider"></div>
+						<h2 style="margin: 3px;text-align: center;font-weight: bolder;">
+							Horas sugeridas de servicio: {{mostrarTotalHoras}} Horas:Minutos
+							<mat-form-field style="margin: 10px;width: 100%;">
+								<mat-label>Selecciona las horas de servicio </mat-label>
+								<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
+									<mat-option value=2 >2 horas</mat-option>
+									<mat-option value=3 >3 horas</mat-option>
+									<mat-option value=4 >4 horas</mat-option>
+									<mat-option value=5 >5 horas</mat-option>
+									<mat-option value=6 >6 horas</mat-option>
+									<mat-option value=7 >7 horas</mat-option>
+									<mat-option value=8 >8 horas</mat-option>
+									<mat-option value=9 >9 horas</mat-option>
+									<mat-option value=10 >10 horas</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</h2>
+					</div>	
+				</div>
+	
 				
 			</div>
-			<div class="col-sm-6">
-				<div class="col-12" >
+		</div>
+		<!-- Card #2 Desinfection customizar servicio-->
+		<div *ngIf="selectedService == 'Disinfection'" class="contenedor">
+			<div class="row">
+				<div class="col-12">
+					<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Area</h2>
+				</div>
+				<div class="col-sm-12">
+					<div class="row" style="margin:2px;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(185, 185, 185)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Area a desinfectar
+											
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select [(ngModel)]="disinfectionService.spaceAreaTime"
+										(ngModelChange)="disinfectionServiceFactura()" id="areapisotiempo"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
+										<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
+											{{area.metros}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							En caso de no encontrar tu metraje por favor <a href="https://api.whatsapp.com/send?phone=573505755555&text=Hola!%20SERV%C2%AE%20Escribo+desde+la+app+web+solicito+asistencia+con+mi+servicio+Gracias!">comuniquese aquí</a>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;width: 100%">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(224, 224, 224)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Solicita la desinfeccion gratuita de vehiculos
+											<br>
+										</h5>
+									</div>
+								</mat-panel-title>
+								
+							</mat-expansion-panel-header>
+							Desinfectamos tus vehiculos con aspercion de amonio cuaternario para prevenir el COVID-19 (MAX:3)
+						</mat-expansion-panel>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+							<img src="../../assets/desinfeccionprofunda2serv.JPG" alt=""
+							style="width: 100%;;margin-bottom: 20px;margin-top: 20px;text-align: center;">
+						</div>
+						<div class="col-sm-5">
+							<img src="../../../assets/desinfeccionprofunda1serv.JPG" alt=""
+							style="width: 100%;margin-bottom: 20px;margin-top: 20px;text-align: center;">
+						</div>
+					</div>
+					
+					
+				</div>
+	
+				<div class="col-12">
 					<div class="dropdown-divider"></div>
 					<h2 style="margin: 3px;text-align: center;font-weight: bolder;">
-						Horas sugeridas de servicio: {{mostrarTotalHoras}} Horas:Minutos
-						<mat-form-field style="margin: 10px;width: 100%;">
-							<mat-label>Selecciona las horas de servicio </mat-label>
-							<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
-								<mat-option value=2 >2 horas</mat-option>
-								<mat-option value=3 >3 horas</mat-option>
-								<mat-option value=4 >4 horas</mat-option>
-								<mat-option value=5 >5 horas</mat-option>
-								<mat-option value=6 >6 horas</mat-option>
-								<mat-option value=7 >7 horas</mat-option>
-								<mat-option value=8 >8 horas</mat-option>
-								<mat-option value=9 >9 horas</mat-option>
-								<mat-option value=10 >10 horas</mat-option>
-							</mat-select>
-						</mat-form-field>
+						Duración del servicio aproximado: {{mostrarTotalHoras.toFixed(1)}} Horas
 					</h2>
-				</div>	
-			</div>
-
-			
-		</div>
-	</div>
-	<!-- Card #2 Desinfection customizar servicio-->
-	<div *ngIf="selectedService == 'Disinfection'" class="contenedor">
-		<div class="row">
-			<div class="col-12">
-				<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Area</h2>
-			</div>
-			<div class="col-sm-12">
-				<div class="row" style="margin:2px;width: 100%;">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(185, 185, 185)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Area a desinfectar
-										
-									</h5>
-								</div>
-							</mat-panel-title>
-							<mat-panel-description>
-								<select [(ngModel)]="disinfectionService.spaceAreaTime"
-									(ngModelChange)="disinfectionServiceFactura()" id="areapisotiempo"
-									style="font-size: small;margin-left: 15px;border-radius: 4px;margin:2px">
-									<option *ngFor="let area of areasGenerales" [value]="area.tiempo">
-										{{area.metros}}</option>
-								</select>
-							</mat-panel-description>
-						</mat-expansion-panel-header>
-						En caso de no encontrar tu metraje por favor comunicate 3505755555
-					</mat-expansion-panel>
 				</div>
-				<div class="row" style="margin:2px;width: 100%">
-					<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(224, 224, 224)">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								<div class="row" style="margin:2px;width: 100%;">
-									<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-										Solicita la desinfeccion gratuita de vehiculos
-										<br>
-									</h5>
-								</div>
-							</mat-panel-title>
+			</div>
+		</div>
+		<!-- Card #2 HELPER customizar servicio-->
+		<div *ngIf="selectedService == 'Helper'" class="contenedor">
+			<div class="row">
+				<div class="col-12">
+					<h1 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Selecciona las horas de servicio</h1>
+				</div>
+	
+				<div class="col-12">
+					<mat-form-field style="margin: 10px;width: 100%;">
+						<mat-label>Por cuanto tiempo vas a necesitar la ayuda de tu SERVER® </mat-label>
+						<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
+							<mat-option value="2">2 horas</mat-option>
+						
+							<mat-option value="4">4 horas</mat-option>
 							
-						</mat-expansion-panel-header>
-						Desinfectamos tus vehiculos con aspercion de amonio cuaternario para prevenir el COVID-19 (MAX:3)
-					</mat-expansion-panel>
-				</div>
-				<div class="row">
-					<div class="col-sm-5">
-						<img src="../../assets/desinfeccionprofunda2serv.JPG" alt=""
-						style="width: 100%;;margin-bottom: 20px;margin-top: 20px;text-align: center;">
-					</div>
-					<div class="col-sm-5">
-						<img src="../../../assets/desinfeccionprofunda1serv.JPG" alt=""
-						style="width: 100%;margin-bottom: 20px;margin-top: 20px;text-align: center;">
-					</div>
-				</div>
-				
-				
-			</div>
-
-			<div class="col-12">
-				<div class="dropdown-divider"></div>
-				<h2 style="margin: 3px;text-align: center;font-weight: bolder;">
-					Horas sugeridas de servicio: {{mostrarTotalHoras}} Horas:Minutos
-				</h2>
-			</div>
-		</div>
-	</div>
-	<!-- Card #2 HELPER customizar servicio-->
-	<div *ngIf="selectedService == 'Helper'" class="contenedor">
-		<div class="row">
-			<div class="col-12">
-				<h1 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">2. Selecciona las horas de servicio</h1>
-			</div>
-
-			<div class="col-12">
-				<mat-form-field style="margin: 10px;width: 100%;">
-					<mat-label>Por cuanto tiempo vas a necesitar la ayuda de tu SERVER® </mat-label>
-					<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
-						<mat-option value="2">2 horas</mat-option>
-					
-						<mat-option value="4">4 horas</mat-option>
+							<mat-option value="6">6 horas</mat-option>
+							
+							<mat-option value="8">8 horas</mat-option>
 						
-						<mat-option value="6">6 horas</mat-option>
 						
-						<mat-option value="8">8 horas</mat-option>
-					
-					
-					</mat-select>
-				</mat-form-field>
-				<div class="dropdown-divider"></div>
-				<div class="row">
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.adulto">
-							Cuidado de adultos mayores
-						</mat-checkbox>
-					</div>
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.menor">
-							Cuidado de niños
-						</mat-checkbox>
-					</div>
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.mascota">
-							Cuidado de mascotas
-						</mat-checkbox>
-					</div>
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.eventos">
-							Personal para eventos o fiestas
-						</mat-checkbox>
-					</div>
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.cooking">
-							Asistente de cocina
-						</mat-checkbox>
-					</div>
-
-					<div class="col-sm-3">
-						<mat-checkbox [(ngModel)]="helperService.todero">
-							Todero
-						</mat-checkbox>
-					</div>
-				</div>
-				<div class="dropdown-divider"></div>
-				<h1 style="margin: 3px;text-align: center;font-weight: bolder;">
-					Horas totales de servicio: {{seleccionarTotalHoras}} Horas
-				</h1>
-			</div>
-		</div>
-	</div>
-	<!-- Card #3 message-->
-	<div class='contenedor'>
-		<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">3. Sugerencias adicionales</h2>
-		<div class="row">
-			<div class="col-12">
-				<mat-slide-toggle [(ngModel)]="SameServer" style="font-size:medium; color:gray;margin-top: 20px;">Quiero a la ultima SERVER® que me atendió </mat-slide-toggle>
-			</div>
-			<h4 style="margin: 3px;color: rgb(161, 161, 161);margin: 10px;">Escribe un mensaje con instrucciones adicionales o requerimientos espaciales para tu SERVER®</h4>
-			<textarea [(ngModel)]="otro" type="text" style="margin-bottom: 20px; width: 100%;border-radius: 3px;margin: 10px;"
-				placeholder="Ej: Quiero que limpies mis zapatos, no limpies el cuarto "></textarea>
-		</div>
-	</div>
-	<!-- Card #4 User details and adress-->
-	<div class='contenedor'>
-		<h1 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">4. Detalles del usuario</h1>
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="container p-2" style=" width: 100%;">
-					<h2 style="color: rgb(172, 171, 171);text-align: center;">Informacion de la dirección</h2>
-					<agm-map [latitude]="lat" [longitude]="lng" style="filter: invert(0.5);">
-						<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-					</agm-map>
+						</mat-select>
+					</mat-form-field>
+					<div class="dropdown-divider"></div>
 					<div class="row">
-						<div class="col-12">
-							<mat-form-field style="margin: 5px; width: 100%;">
-								<mat-label>Direccion completa</mat-label>
-								<input [(ngModel)]="user.locationAdress" matInput matiplaceholder="Your Adress" type="text" required>
-							</mat-form-field>
-							<mat-form-field style="margin: 5px; width: 100%;">
-								<mat-label>Complementos (Ej: apto 4 piso 2)</mat-label>
-								<input matInput matiplaceholder="Complements" [(ngModel)]="user.adressComplements"
-									type="text" required>
-							</mat-form-field>
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.adulto">
+								Cuidado de adultos mayores
+							</mat-checkbox>
 						</div>
-						<div class="col-6">
-							<mat-form-field style="margin: 5px; width: 100%;">
-								<mat-label>Ciudad</mat-label>
-								<input [(ngModel)]="selectedCity" matInput type="text"required>
-							</mat-form-field>
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.menor">
+								Cuidado de niños
+							</mat-checkbox>
 						</div>
-						<div class="col-6">
-
-							<mat-form-field style="margin: 5px; width: 100%;">
-								<mat-label>País</mat-label>
-								<input [(ngModel)]="user.country" matInput type="text"required>
-							</mat-form-field>
-
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.mascota">
+								Cuidado de mascotas
+							</mat-checkbox>
 						</div>
-						<div class="col-12">
-							<mat-form-field style="margin: 5px; width: 100%;">
-								<mat-label>Indicaciones o puntos de referencia para llegar</mat-label>
-								<textarea matInput type="text" [(ngModel)]="user.adressHints" required>
-								</textarea>
-							</mat-form-field>
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.eventos">
+								Personal para eventos o fiestas
+							</mat-checkbox>
+						</div>
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.cooking">
+								Asistente de cocina
+							</mat-checkbox>
+						</div>
+	
+						<div class="col-sm-3">
+							<mat-checkbox [(ngModel)]="helperService.todero">
+								Todero
+							</mat-checkbox>
+						</div>
+					</div>
+					<div class="dropdown-divider"></div>
+					<h1 style="margin: 3px;text-align: center;font-weight: bolder;">
+						Horas totales de servicio: {{seleccionarTotalHoras}} Horas
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- Card #3 message-->
+		<div class='contenedor'>
+			<h2 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">3. Sugerencias adicionales</h2>
+			<div class="row">
+				<div class="col-12">
+					<mat-slide-toggle [(ngModel)]="SameServer" style="font-size:medium; color:gray;margin-top: 20px;">Quiero a la ultima SERVER® que me atendió </mat-slide-toggle>
+				</div>
+				<h4 style="margin: 3px;color: rgb(161, 161, 161);margin: 10px;">Escribe un mensaje con instrucciones adicionales o requerimientos espaciales para tu SERVER®</h4>
+				<textarea [(ngModel)]="otro" type="text" style="margin-bottom: 20px; width: 100%;border-radius: 3px;margin: 10px;"
+					placeholder="Ej: Quiero que limpies mis zapatos, no limpies el cuarto "></textarea>
+			</div>
+		</div>
+		<!-- Card #4 User details and adress-->
+		<div class='contenedor'>
+			<h1 style="font-size: 30px;font-weight: bold;color: rgb(15,15,27);">4. Detalles del usuario</h1>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="container p-2" style=" width: 100%;">
+						<h2 style="color: rgb(172, 171, 171);text-align: center;">Informacion de la dirección</h2>
+						<agm-map [latitude]="lat" [longitude]="lng" style="filter: invert(0.5);">
+							<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+						</agm-map>
+						<div class="row">
+							<div class="col-12">
+								<mat-form-field style="margin: 5px; width: 100%;">
+									<mat-label>Direccion completa</mat-label>
+									<input [(ngModel)]="user.locationAdress" matInput matiplaceholder="Your Adress" type="text" required>
+								</mat-form-field>
+								<mat-form-field style="margin: 5px; width: 100%;">
+									<mat-label>Complementos (Ej: apto 4 piso 2)</mat-label>
+									<input matInput matiplaceholder="Complements" [(ngModel)]="user.adressComplements"
+										type="text" required>
+								</mat-form-field>
+							</div>
+							<div class="col-6">
+								<mat-form-field style="margin: 5px; width: 100%;">
+									<mat-label>Ciudad</mat-label>
+									<input [(ngModel)]="selectedCity" matInput type="text"required>
+								</mat-form-field>
+							</div>
+							<div class="col-6">
+	
+								<mat-form-field style="margin: 5px; width: 100%;">
+									<mat-label>País</mat-label>
+									<input [(ngModel)]="user.country" matInput type="text"required>
+								</mat-form-field>
+	
+							</div>
+							<div class="col-12">
+								<mat-form-field style="margin: 5px; width: 100%;">
+									<mat-label>Indicaciones o puntos de referencia para llegar</mat-label>
+									<textarea matInput type="text" [(ngModel)]="user.adressHints" required>
+									</textarea>
+								</mat-form-field>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="container p-2" style=" width: 100%;; text-align: left;">
-					<h2 style="color: rgb(172, 172, 172);text-align: center;margin-bottom: 0px;">Detalles de contacto</h2>
-					<mat-form-field style="margin: 5px;width: 100%">
-						<mat-label>Nombre</mat-label>
-						<input matInput placeholder="First Name" required [(ngModel)]="usuarioActivo.name">
-					</mat-form-field>
-					<mat-form-field style="margin: 5px;width: 100%">
-						<mat-label>Apellido</mat-label>
-						<input matInput placeholder="Last Name" required [(ngModel)]="usuarioActivo.lastName">
-					</mat-form-field>
-					<mat-form-field style="margin: 5px;width: 100%">
-						<mat-label>Correo</mat-label>
-						<input matInput placeholder="E-Mail" type="email" required [(ngModel)]="usuarioActivo.email">
-					</mat-form-field>
-					<mat-form-field style="margin: 5px;width: 100%">
-						<mat-label>Telefono</mat-label>
-						<input matInput matiplaceholder="Contact Phone" type="number" required [(ngModel)]="usuarioActivo.telefono">
-					</mat-form-field>
-
-			<!-- 		<div class="col-sm-12 form-group">
-						<label class=""><i class="fa fa-map-marker"></i> Direccion <span>*</span></label>
-						<div class="ng-autocomplete">
-						  <ng-autocomplete
-							type="search"
-							placeHolder="Buscar por direccion"
-							[data]="placePredictions" 
-							searchKeyword="description"
-							[(ngModel)]="direccion"
-							(keyup)="onSearchPlace(direccion, ciudadGoogle)"
-							(selected)="onSelectedPlace($event)" 
-							(inputCleared)="clearPlace($event)"
-							(inputFocused)="onFocusedPlace($event)"
-							[itemTemplate]="itemTemplate"
-							[notFoundTemplate]="notFoundTemplate"
-						
-						  >
-						  </ng-autocomplete>
+				<div class="col-sm-6">
+					<div class="container p-2" style=" width: 100%;; text-align: left;">
+						<h2 style="color: rgb(172, 172, 172);text-align: center;margin-bottom: 0px;">Detalles de contacto</h2>
+						<mat-form-field style="margin: 5px;width: 100%">
+							<mat-label>Nombre</mat-label>
+							<input matInput placeholder="First Name" required [(ngModel)]="usuarioActivo.name">
+						</mat-form-field>
+						<mat-form-field style="margin: 5px;width: 100%">
+							<mat-label>Apellido</mat-label>
+							<input matInput placeholder="Last Name" required [(ngModel)]="usuarioActivo.lastName">
+						</mat-form-field>
+						<mat-form-field style="margin: 5px;width: 100%">
+							<mat-label>Correo</mat-label>
+							<input matInput placeholder="E-Mail" type="email" required [(ngModel)]="usuarioActivo.email">
+						</mat-form-field>
+						<mat-form-field style="margin: 5px;width: 100%">
+							<mat-label>Telefono</mat-label>
+							<input matInput matiplaceholder="Contact Phone" type="number" required [(ngModel)]="usuarioActivo.telefono">
+						</mat-form-field>
+	
+				<!-- 		<div class="col-sm-12 form-group">
+							<label class=""><i class="fa fa-map-marker"></i> Direccion <span>*</span></label>
+							<div class="ng-autocomplete">
+							  <ng-autocomplete
+								type="search"
+								placeHolder="Buscar por direccion"
+								[data]="placePredictions" 
+								searchKeyword="description"
+								[(ngModel)]="direccion"
+								(keyup)="onSearchPlace(direccion, ciudadGoogle)"
+								(selected)="onSelectedPlace($event)" 
+								(inputCleared)="clearPlace($event)"
+								(inputFocused)="onFocusedPlace($event)"
+								[itemTemplate]="itemTemplate"
+								[notFoundTemplate]="notFoundTemplate"
+							
+							  >
+							  </ng-autocomplete>
+				
+							  <ng-template #itemTemplate let-item>
+								<a [innerHTML]="item.description"></a>
+							  </ng-template>
+				
+							  <ng-template #notFoundTemplate let-notFound>
+								<div [innerHTML]="notFound"></div>
+							  </ng-template>
+							</div>-->
+							
 			
-						  <ng-template #itemTemplate let-item>
-							<a [innerHTML]="item.description"></a>
-						  </ng-template>
-			
-						  <ng-template #notFoundTemplate let-notFound>
-							<div [innerHTML]="notFound"></div>
-						  </ng-template>
-						</div>-->
 						
-		
-					
-		
+			
+					</div>
 				</div>
 			</div>
 		</div>
+	
+		<h4 style="text-align: center;color: gray;margin: 10px 0px 30px;margin-bottom: 50px;"> Gracias por confiar en nosotros <br> En caso de necesitar asistencia <br> <a href="https://api.whatsapp.com/send?phone=573505755555&text=Hola!%20SERV%C2%AE%20Escribo+desde+la+app+web+solicito+asistencia+con+mi+servicio+Gracias!">Comuniquese aquí</a> </h4>
+		<div class='contenedor' style="background-color: rgb(40, 51, 85);">
+		<!-- BARRA INFERIOR-->
+		<nav class="navbar navbar-light rounded" style="width: 100%;padding: 0px;background-color: #FFFFFF;">
+			<div class="row" style="width: 100%; margin: 5px">
+				<div class="col-12" style="padding-right: 0px;margin-right: 0px;padding-left: 0px;width: 100%;">
+					<div class="col-12">
+						<h2 style="text-align: left;margin-bottom: 1px;color: rgb(12, 57, 124);">
+							<strong>Resumen de tu orden:</strong>
+						</h2>
+					</div>
+					<div class="col-12">
+						<h3 style="text-align: left;margin-bottom: 1px;color: rgb(12, 57, 124);">
+							<img *ngIf="selectedService == 'Disinfection'" src="../../assets/Iconos XD/Iconos PNG/desinfeccionrect.jpeg" style="width: 100%;display: block;margin: auto;border-radius: 10px;">
+			<img *ngIf="selectedService == 'BusinessCleaning'" src="../../assets/Iconos XD/Iconos PNG/aseoempresasrect.jpeg" style="width: 100%;display: block;margin: auto;border-radius: 10px;">
+			<img *ngIf="selectedService == 'Helper'" src="../../assets/Iconos XD/Iconos PNG/asistenterect.jpeg" style="width: 100%;display: block;margin: auto;border-radius: 10px;">
+				<img *ngIf="selectedService == 'HomeCleaning'" src="../../assets/Bannerup-Limpieza-40.jpg" style="width: 100%;display: block;margin: auto;border-radius: 10px;">
+		
+							<strong>SERV {{selectedService}}</strong>
+						</h3>
+					</div>
+		
+					<div class="container p-2 rounded" style=" width: 100%;color: rgb(12, 57, 124);font-size: small;">
+						
+						
+						<h5 style="text-align: center;margin-bottom: 1px;">
+							<strong>USUARIO:</strong>
+							{{usuarioActivo.name}} {{usuarioActivo.lastName}}
+						</h5>
+						<h5 style="margin: 1px;">
+							<strong>DURACIÓN:</strong>
+							{{seleccionarTotalHoras || 0}} HH:MM
+						</h5>
+						<h5 style="margin: 1px;">
+							<strong>FECHA:</strong>
+							{{serviceDate || '00-00-00'}} AT {{serviceStartTime || '00:00'}}
+						</h5>
+						<h5 style="margin: 1px;">
+							<strong>DIRECCIÓN:</strong>
+							{{user.locationAdress || 'Adress'}}, {{user.city || 'Toronto'}}
+						</h5>
+						<h3 style="margin: 1px;">
+							<strong>TOTAL: ${{mostrarTotalPrice || 0}} COP</strong>
+						</h3>
+	
+					</div>
+				</div>
+				<div class="col-12" style="width: 100%;">
+					<button type="button" (click)="agendarHelper()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;background-color: rgb(245, 57, 0);">
+						Confirmar y proceder a pago
+						<br>
+						<img src="../../assets/btn6.png" style="width:130px;margin-left: 1px;">
+					</button>
+				</div>
+			</div>
+		</nav>
 	</div>
-
-	<h2 style="text-align: center;color: gray;margin: 10px 0px 30px;margin-bottom: 50px;"> Gracias por confiar en nosotros <br> En caso de necesitar asistencia <br> comuniquese 3505755555</h2>
-
-	<!-- BARRA INFERIOR-->
-	<nav class="navbar navbar-light shadow-lg" style="box-shadow: 0 2px 16px -4px black;width: 100%;padding: 0px;background-color: #FFFFFF;">
-		<div class="row" style="width: 100%; margin: 5px">
-			<div class="col-12" style="padding-right: 0px;margin-right: 0px;padding-left: 0px;width: 100%;">
-				<div class="container p-2 rounded" style=" width: 100%;">
-					<h3 style="text-align: center;margin-bottom: 1px;">
-						<strong>SERV {{selectedService}}</strong>
-					</h3>
-					<h5 style="margin: 1px;">
-						<strong>DURACIÓN:</strong>
-						{{seleccionarTotalHoras || 0}} HH:MM
-					</h5>
-					<h5 style="margin: 1px;">
-						<strong>FECHA:</strong>
-						{{serviceDate || '00-00-00'}} AT {{serviceStartTime || '00:00'}}
-					</h5>
-					<h5 style="margin: 1px;">
-						<strong>DIRECCIÓN:</strong>
-						{{user.locationAdress || 'Adress'}}, {{user.city || 'Toronto'}}
-					</h5>
-					<h3 style="margin: 1px;">
-						<strong>TOTAL: ${{mostrarTotalPrice || 0}} COP</strong>
-					</h3>
-
-				</div>
-			</div>
-			<div class="col-12" style="width: 100%;">
-				<button type="button" (click)="agendarHelper()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;">
-					Confirmar y proceder a pago
-					<br>
-					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png" style="filter:invert(1);width:59px;margin-left: 1px;">
-				</button>
-			</div>
-		</div>
-	</nav>
+	</div>
+</div>	
