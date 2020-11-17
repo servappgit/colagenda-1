@@ -98,13 +98,13 @@
       </div>
       
   </div>
-  <div class="col-sm-12" style="width: 100%;">
+  <div class="col-sm-12" style="width: 100%;" *ngIf="proximoServicio" >
  
-    <div class="card text-dark bg-warning" style="width:100%; border-radius: 10px; margin: auto;display: block;margin-top:20px;margin-bottom: 20px;">
+    <div class="card text-dark bg-warning shadow" style="width:100%; border-radius: 10px; margin: auto;display: block;margin-top:20px;margin-bottom: 20px;">
         <div class="card-body">
       
         <p class="card-text" style="display: block;margin: auto;"><img src="../../assets/Iconos XD/Iconos PNG/Planes.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.alimentos == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Cocinar.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.lavado == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Lavar.png" style="width:60px;margin: 5px;" alt="SERV®"> <img *ngIf="proximoServicio.planchado == true" src="../../assets/Iconos XD/Iconos PNG/Tarea Planchar.png" style="width:60px;margin: 5px;" alt="SERV®"> <br><strong>Fecha:</strong> {{proximoServicio.fecha}} <strong>Hora de inicio:</strong>  {{proximoServicio.hora}}:00 <br> <strong>Direccion:</strong> {{proximoServicio.direccion}} <br> <strong>Horas de servicio:</strong> {{proximoServicio.horasDeServicio}} Horas <strong>Valor:</strong>  {{proximoServicio.precio}}  </p>
-        <button class="btn btn-dark btn-block mt-1" style="font-size: small;">Comunicarse con logistica</button>
+        <a href="https://api.whatsapp.com/send?phone=573505755555&text=Hola!%20SERV%C2%AE%20Escribo+desde+la+app+web+solicito+asistencia+con+mi+servicio+Gracias!" target="_blank" class="btn btn-dark btn-block mt-1" style="font-size: small;color: rgb(255, 255, 255);">Comunicarse con logistica</a>
       </div>
     </div>
     
