@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 	UserName: any;
 	UserLastName: any;
 	UserPhone: any;
+	UserDocument: any;
 	UserCity: any;
 	UserIdLocation: any;
 	UserId: any;
@@ -72,6 +73,7 @@ export class LoginComponent implements OnInit {
 			name: this.UserName,
 			 apellido: this.UserLastName, 
 			 telefono: this.UserPhone, 
+			 documento: this.UserDocument, 
 			 email: this.UserEmail,
 			 clave: this.UserPassword,
 				rol: "usuario",

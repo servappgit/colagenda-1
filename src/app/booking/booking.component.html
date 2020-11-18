@@ -643,7 +643,7 @@
 				<div class="col-12">
 					<div class="dropdown-divider"></div>
 					<h2 style="margin: 3px;text-align: center;font-weight: bolder;">
-						Duración del servicio aproximado: {{mostrarTotalHoras.toFixed(1)}} Horas
+						Duración del servicio aproximado: {{mostrarTotalHoras?.toFixed(1)}} Horas
 					</h2>
 				</div>
 			</div>
@@ -872,8 +872,27 @@
 	
 					</div>
 				</div>
+				<div class="col-12">
+					<form>
+						<script
+							src="https://checkout.epayco.co/checkout.js"
+							class="epayco-button"
+							data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
+							data-epayco-amount="50000"
+							data-epayco-name="Vestido Mujer Primavera"
+							data-epayco-description="Vestido Mujer Primavera"
+							data-epayco-currency="cop"
+							data-epayco-country="co"
+							data-epayco-test="true"
+							data-epayco-external="false"
+							data-epayco-response="https://ejemplo.com/respuesta.html"
+							data-epayco-confirmation="https://ejemplo.com/confirmacion">
+						</script>
+					</form>
+				</div>
 				<div class="col-12" style="width: 100%;">
-					<button type="button" (click)="agendarHelper()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;background-color: rgb(245, 57, 0);">
+			
+					<button type="button" (click)="agendar()" class="btn btn-warning btn-block shadow" style="font-size:normal;margin: 5px;color: #FFFFFF;background-color: rgb(245, 57, 0);">
 						Confirmar y proceder a pago
 						<br>
 						<img src="../../assets/btn6.png" style="width:130px;margin-left: 1px;">

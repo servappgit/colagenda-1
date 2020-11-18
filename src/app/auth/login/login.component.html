@@ -1,4 +1,4 @@
-<div class="div" style="background-image: url(../../../assets/fondoazulservrepetido.jpg);background-size: 100%;">
+<div class="div" style="background-size: 100%;background-color: rgb(24, 43, 71);">
   <div class="wrapper fadeInDown">
   
     <div id="formContent">
@@ -18,16 +18,15 @@
       <div id="formFooter" *ngIf="registro == false">
         <div class="row" style="margin-bottom: 10px;align-items: center;">
           <div class="col-12">
-            <button  class="btn btn-block btn-light shadow" (click)="facebookLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Facebook Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
+            <button  class="btn btn-block btn-light shadow" (click)="facebookLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Boton continua Facebook.png" style="width: 250px" ></button>
   
           </div>
           <div class="col-12">
-            <button  class="btn btn-block btn-light shadow-lg" (click)="googleLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Google Login.png" style="width: 250px;filter: invert(1) sepia(0);" ></button>
+            <button  class="btn btn-block btn-light shadow-lg" (click)="googleLogin()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Boton continua Google.png" style="width: 250px" ></button>
   
           </div>
           <div class="col-12">
-            <button  class="btn btn-block btn-light shadow-lg" (click)="irInicioServ()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px; padding:8px;border-color:black" > <img src="../../../assets/Intro-SERV-8.gif" style="filter: invert(0.5) brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5);width: 40px;" alt="User Icon" />
-              <strong>Inicia sesión con SERV®</strong> </button>
+            <button  class="btn btn-block btn-light shadow-lg" (click)="irInicioServ()" style="width: 100%;padding: 0px;max-width: 250px;display: block;margin: auto;margin-bottom: 5px" > <img src="../../../assets/Iconos XD/Iconos PNG/Boton Inicia SERV mail.png.png" style="width: 250px" ></button>
   
           </div>
       </div>
@@ -35,8 +34,8 @@
       
         <!-- Login Form -->
       <form>
-         <input type="text" id="login2" class="fadeIn second" name="login2" [(ngModel)]="UserEmail2" placeholder="Correo">
-        <input type="text" id="password2" class="fadeIn second" name="password2" [(ngModel)]="UserPassword2" placeholder="Contraseña">
+         <input type="email" id="login2" class="fadeIn second" name="login2" [(ngModel)]="UserEmail2" placeholder="Correo">
+        <input type="password" id="password2" class="fadeIn second" name="password2" [(ngModel)]="UserPassword2" placeholder="Contraseña">
         <button type="submit" (click)="loginemail()" class="btn btn-secondary" style="width: 85%;height: 55px;margin-top: 5px;" >Iniciar sesión</button>
       </form>
 
@@ -51,11 +50,12 @@
         <input type="text" id="nombre" class="fadeIn second" name="login" [(ngModel)]="UserName" placeholder="Nombre">
         <input type="text" id="LastName" class="fadeIn second" name="login" [(ngModel)]="UserLastName" placeholder="Apellido" >
         <input type="text" id="Phone" class="fadeIn second" name="login" [(ngModel)]="UserPhone" placeholder="Teléfono" >
+        <input type="text" id="Document" class="fadeIn second" name="login" [(ngModel)]="UserDocument" placeholder="Documento" >
         <select required="required" class="fadeIn second" style="border-radius: 4px;padding: 10px;font-size: large;" name="login" id="city" [(ngModel)]="UserCity" aria-required="true"><option value="" selected> Elige tu ciudad</option>
           <option value="Bogotá"> Bogotá, Colombia.</option>
           <option value="Medellín">Medellín, Colombia.</option></select>
-         <input type="text" id="login" class="fadeIn second" name="login" [(ngModel)]="UserEmail" placeholder="Correo">
-        <input type="text" id="password" class="fadeIn second" name="login" [(ngModel)]="UserPassword" placeholder="Contraseña">
+         <input type="email" id="login" class="fadeIn second" name="login" [(ngModel)]="UserEmail" placeholder="Correo">
+        <input type="password" id="password" class="fadeIn second" name="login" [(ngModel)]="UserPassword" placeholder="Contraseña">
         <button type="submit" (click)="crearUsuario()" class="btn btn-secondary" style="width: 85%;height: 55px;margin-top: 5px;" >Crear cuenta y continuar</button>
       </form>
 
@@ -66,6 +66,7 @@
 </div>
 <div class="div">
   <div class="row" style="display: block;margin: auto;">
+      <div class="col-sm-4" style="display: block;margin: auto;">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin: 5px;margin-bottom: 10px;" >
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -92,6 +93,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+  </div>
   </div>
   <img src="../../../assets/appscoimagen.jpg" style="display:block;margin:auto" width=50% alt="">
 </div>

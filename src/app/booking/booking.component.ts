@@ -16,6 +16,16 @@ import { GoogleServiceService } from '../services/google-service.service';
 
 export class BookingComponent implements OnInit {
 
+	//private declare ePayco: any;
+	private window: any = window;
+	private ePayco = this.window.ePayco.checkout.configure({
+		key: '9ba686768c71a47df53e55acd1899430',
+		test: true
+	});
+
+
+
+
 	public ciudadGoogle = "Bogotá D.C." as string;
 	public direccion: any;
 	public origin: any;
@@ -292,6 +302,7 @@ export class BookingComponent implements OnInit {
 		} else if (this.selectedService == 'Helper') {
 			this.agendarHelper();
 		}
+		this.openCheckout()
 		this.router.navigate(['gracias']);
 	}
 
@@ -475,5 +486,71 @@ this.servicioAgendado = {
 		}
 	}
 
+	public openCheckout(){
+		var data={ 
+			//Parametros compra (obligatorio) 
+			invoice: "12415336363",
+			currency: "cop",
+			name: "Plan de facturacion electronica",
+			description: "Plan de facturacion electronica",
+			tax_base: '0',
+			tax: '0',
+			amount: 40000,
+			country: "co",
+			lang: "es",
+			external: "false",
+			//Onpage="false" - Standard="true" 
+			//Atributos opcionales
+			method:'GET',
+			extra1: '',
+			extra2: 'ePayco',
+			extra3: '',
 
+			//Atributos cliente
+			name_billing: "Andres Perez",
+			address_billing: "Carrera 19 numero 14 91",
+			type_doc_billing: "cc",
+			mobilephone_billing: "3050000000",
+			number_doc_billing: "100000000",
+  
+		   //atributo deshabilitación metodo de pago
+			//methodsDisable: ["TDC", "PSE","SP","CASH","DP"],
+
+			response: "http://localhost:4200/response",
+			confirmation: "http://localhost:4200/confirmation",
+		  }
+		  /*
+		var data={
+			//Parametros compra (obligatorio)
+			name: "Vestido Mujer Primavera",
+			description: "Vestido Mujer Primavera",
+			invoice: "1234",
+			currency: "cop",
+			amount: "12000",
+			tax_base: "0",
+			tax: "0",
+			country: "co",
+			lang: "en",
+  
+			//Onpage="false" - Standard="true"
+			external: "false",
+  
+  
+			//Atributos opcionales
+			extra1: "extra1",
+			extra2: "extra2",
+			extra3: "extra3",
+			response: "http://localhost:4200/response",
+			confirmation: "http://localhost:4200/confirmation",
+  
+			
+  
+			}*/
+			this.ePayco.onCloseModal = this.onCloseEpaycoModal
+			this.ePayco.open(data);	
+	}
+
+	onCloseEpaycoModal(){
+		alert('Close ePayco Modal!!!!!!!')
+	}
 }

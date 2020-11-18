@@ -35,6 +35,7 @@ import { AngularFireStorageModule, AngularFireStorage } from "angularfire2/stora
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { GraciasComponent } from './pagina-gracias/gracias/gracias.component';
 import { HomeComponent } from './home/home.component';
+import { ResponseComponent } from './response/response.component';
 
 export const firebaseConfig = {
 	apiKey: "AIzaSyBtrum3w1Mg3XfP7yiO3WuM-kZm7M7keOs",
@@ -53,6 +54,7 @@ export const firebaseConfig = {
 		ExampleDialogComponent,
 		GraciasComponent,
 		HomeComponent,
+		ResponseComponent,
 	],
 	imports: [
 		AutocompleteLibModule,
