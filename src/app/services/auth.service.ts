@@ -5,6 +5,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
+import { auth } from 'firebase/app';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,24 @@ export class AuthService {
   logoutUser() {
     return this.angularFireAuth.auth.signOut();
   }
+
+
+
+async loginGoogle(){
+  try{
+    return this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider())
+  }
+  catch(err){console.log(err)}
+}
+
+async loginFacebook(){
+  try{
+    return this.afAuth.auth.signInWithPopup( new auth.FacebookAuthProvider())
+  }
+  catch(err){console.log(err)}
+}
+
+
 
   registerUser(datos: any) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(datos.email, datos.clave)

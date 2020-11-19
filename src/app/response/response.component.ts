@@ -33,6 +33,7 @@ export class ResponseComponent implements OnInit {
   console.log(this.servicioAgendado)
   // añadimos las propiedades del checkout y mandamos el servicio a la base de datos como orden de servicio
   this.servicioAgendado.referenciaPago = this.params.x_id_invoice
+  this.servicioAgendado.referenciaEpaycoPago = this.params.x_ref_payco
   this.servicioAgendado.estadoPago = this.params.x_transaction_state
   this.servicioAgendado.fechaPago = this.params.x_transaction_date
   console.log(this.servicioAgendado)

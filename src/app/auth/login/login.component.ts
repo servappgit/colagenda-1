@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
 		firebase.auth().onAuthStateChanged(user=> {
 		  this.user = user;
 		});
+
+		
 	}
 
 	irRegistro(){
@@ -151,43 +153,133 @@ export class LoginComponent implements OnInit {
 	  
 		 
 	googleLogin() {
-		firebase.auth().signInWithPopup(this.provider).then(function(result) {
-			var user = result.user;
-			console.log(user.email);
+	try{this.authService.loginGoogle().then((data) => {
+		console.log(data.user)
+			const userFirebase = {} = data.user;
+			this.authService.detail(userFirebase.uid).subscribe((usuario: {		id: string,
+				uid?: string,
+				idLocation?: string,
+				deviceId?: string,
+				name: string,
+				apellido: string,
+				email: string,
+				clave?: string,
+				estado: string,
+				fechaNacimiento: string,
+				foto: string,
+				telefono: number,
+				rol: string,
+				tipo: string,
+				genero?: string,
+				typoDocumento: string,
+				tipoPropiedad:  string,
+				descripcionDireccion:  string,
+				observaciones:  string,
+				documento: string,
+				direccion: string,
+				zona: string,
+				fecha?: number,
+				cread_at?: number,
+				update_at?: number,
+				terminos: boolean,
+				gps: {
+					lat: number;
+					lng: number;
+				},}) => {
+				const sesion = {
+					photoURL: usuario.foto ? usuario.foto : '/assets/img/userDefault.png',
+					name: usuario.name,
+					lastName: usuario.apellido,
+					telefono: usuario.telefono,
+					id: usuario.id,
+					email: usuario.email,
+					idLocation: usuario.idLocation,
+					direccion: usuario.direccion,
+					descripcionDireccion: usuario.descripcionDireccion,
+					documento: usuario.documento,
+					rol: usuario.rol ? usuario.rol : 'usuario',
+					privilege: 'null'
+				  }
+				  console.log(sesion)
+			if (data) {
+				this.authService.storeUserData(data, sesion);
+				this.router.navigate(['servicios']);
+			}
+		})
 			
-		   }).catch(function(error) {
-			
-			 var errorCode = error.code;
-			 var errorMessage = error.message;
-			 var email = error.email;
-			 var credential = error.credential;
-		   });
-		   
+
+	})
+	
+	
+	}
+	catch(err){console.log(err)}
+		  
 	  }
 
 
 	  facebookLogin(){
-		var provider = new firebase.auth.FacebookAuthProvider();
-		this.provider = provider;
-	 
-		firebase.auth().signInWithPopup(provider).then(function(result) {
-	  
-		 var user = result.user;
-		 console.log(user);
-		 
-		 // ...
-	   }).catch(function(error) {
-		 // Handle Errors here.
-		 var errorCode = error.code;
-		 var errorMessage = error.message;
-		 // The email of the user's account used.
-		 var email = error.email;
-		 // The firebase.auth.AuthCredential type that was used.
-		 var credential = error.credential;
-		 // ...
-	   });
-	   
-	   }
+		try{this.authService.loginFacebook().then((data) => {
+			console.log(data.user)
+				const userFirebase = {} = data.user;
+				this.authService.detail(userFirebase.uid).subscribe((usuario: {		id: string,
+					uid?: string,
+					idLocation?: string,
+					deviceId?: string,
+					name: string,
+					apellido: string,
+					email: string,
+					clave?: string,
+					estado: string,
+					fechaNacimiento: string,
+					foto: string,
+					telefono: number,
+					rol: string,
+					tipo: string,
+					genero?: string,
+					typoDocumento: string,
+					tipoPropiedad:  string,
+					descripcionDireccion:  string,
+					observaciones:  string,
+					documento: string,
+					direccion: string,
+					zona: string,
+					fecha?: number,
+					cread_at?: number,
+					update_at?: number,
+					terminos: boolean,
+					gps: {
+						lat: number;
+						lng: number;
+					},}) => {
+					const sesion = {
+						photoURL: usuario.foto ? usuario.foto : '/assets/img/userDefault.png',
+						name: usuario.name,
+						lastName: usuario.apellido,
+						telefono: usuario.telefono,
+						id: usuario.id,
+						email: usuario.email,
+						idLocation: usuario.idLocation,
+						direccion: usuario.direccion,
+						descripcionDireccion: usuario.descripcionDireccion,
+						documento: usuario.documento,
+						rol: usuario.rol ? usuario.rol : 'usuario',
+						privilege: 'null'
+					  }
+					  console.log(sesion)
+				if (data) {
+					this.authService.storeUserData(data, sesion);
+					this.router.navigate(['servicios']);
+				}
+			})
+				
+	
+		})
+		
+		
+		}
+		catch(err){console.log(err)}
+			   
+	  }
 
 	  //public loginGoogle(){
 		//  console.log("ok")
