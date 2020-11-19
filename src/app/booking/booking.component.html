@@ -34,7 +34,7 @@
 	</div>
 	<!-- Card #1 Seleccionar service-->
 <div class="row">
-	<div class="col-sm-6" style="display: block;margin: auto;">
+	<div class="col-sm-8" style="display: block;margin: auto;">
 		<div class='contenedor'>
 			<img *ngIf="selectedService == 'Disinfection'" src="../../assets/Iconos XD/Iconos PNG/desinfeccionrect.jpeg" style="width: 100%;display: block;margin: auto;">
 			<img *ngIf="selectedService == 'BusinessCleaning'" src="../../assets/Iconos XD/Iconos PNG/aseoempresasrect.jpeg" style="width: 100%;display: block;margin: auto;">
@@ -365,7 +365,7 @@
 	
 									<div class="row" style="margin:2px;width: 100%;">
 										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-											Area total (20min/500ft2)
+											Area total (20min/50m2)
 										</h5>
 									</div>
 								</mat-panel-title>
@@ -453,7 +453,7 @@
 								<mat-panel-title>
 									<div class="row" style="margin:2px;width: 100%;">
 										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-											Escritorios a limpiar (10min/each)
+											Escritorios a limpiar (15min/c.u)
 										</h5>
 									</div>
 								</mat-panel-title>
@@ -493,7 +493,7 @@
 								<mat-panel-title>
 									<div class="row" style="margin:2px;width: 100%;">
 										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
-											Limpieza de oficinas cerradas (30min/each)
+											Limpieza de oficinas cerradas (30min/c.u)
 										</h5>
 									</div>
 								</mat-panel-title>
@@ -520,6 +520,44 @@
 									<p>✔ No tiramos a la basura sus documentos</p>
 								</div>
 							</div>
+						</mat-expansion-panel>
+					</div>
+					<div class="row" style="margin:2px;;width: 100%;">
+						<mat-expansion-panel style="margin:2px;width: 100%;background-color: rgb(186, 186, 190)">
+							<mat-expansion-panel-header>
+								<mat-panel-title>
+	
+									<div class="row" style="margin:2px;width: 100%;">
+										<h5 style="margin: 2px;font-weight: bold;font-size:15px">
+											Baños a limpiar (30min/c.u)
+										</h5>
+									</div>
+								</mat-panel-title>
+								<mat-panel-description>
+									<select name="selectBathrooms" [(ngModel)]="bussinesService.bathroomsTime"
+										(ngModelChange)="bussinesServiceFactura()"
+										style="font-size: small;margin-left: 15px;border-radius: 4px;margin: 2px">
+										<option *ngFor="let bano of tiempoBanos" [value]="bano.tiempo">
+											{{bano.cantidad}}</option>
+									</select>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+							<div class="row" style="font-size: smaller;">
+								<div class="col-12">
+									<p><strong>Incluye:</strong> </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza de mesones y estantes </p>
+									<p>✔ Limpieza profunda inodoro </p>
+									<p>✔ Limpieza de lavamanos </p>
+								</div>
+								<div class="col">
+									<p>✔ Limpieza de sifones</p>
+									<p>✔ Limpieza de duchas y bañeras </p>
+									<p>✔ Limpieza de vidrios </p>
+								</div>
+							</div>
+
 						</mat-expansion-panel>
 					</div>
 					<div class="row" style="margin:2px;width: 100%">
@@ -563,14 +601,13 @@
 								<mat-label>Selecciona las horas de servicio </mat-label>
 								<mat-select [(ngModel)]="seleccionarTotalHoras" (ngModelChange)="actualizarFactura()">
 									<mat-option value=2 >2 horas</mat-option>
-									<mat-option value=3 >3 horas</mat-option>
+									
 									<mat-option value=4 >4 horas</mat-option>
-									<mat-option value=5 >5 horas</mat-option>
+						
 									<mat-option value=6 >6 horas</mat-option>
-									<mat-option value=7 >7 horas</mat-option>
+									
 									<mat-option value=8 >8 horas</mat-option>
-									<mat-option value=9 >9 horas</mat-option>
-									<mat-option value=10 >10 horas</mat-option>
+							
 								</mat-select>
 							</mat-form-field>
 						</h2>

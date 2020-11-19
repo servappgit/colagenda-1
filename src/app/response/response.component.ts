@@ -37,12 +37,20 @@ export class ResponseComponent implements OnInit {
   this.servicioAgendado.estadoPago = this.params.x_transaction_state
   this.servicioAgendado.fechaPago = this.params.x_transaction_date
   console.log(this.servicioAgendado)
-  //this.ServicioService.registerServicio(this.servicioAgendado);
+  this.ServicioService.guardarservicio(this.servicioAgendado);
+  console.log("servicio subido a firebase")
    });
   	this.epaycoService.getTransactionResponse(this.refPayco)
     .subscribe((data: EpaycoTransaction) =>{
         this.transactionResponse = data.data
     });
   }
-
+	public guardarServicio(servicio) {
+		if (servicio.userid != '' && servicio.horasDeServicio != '' && servicio.fecha != '' && servicio.hora != '' && servicio.direccion != '') {
+      this.ServicioService.registerServicio(servicio);
+      console.log("servicio subido a firebase")
+		} else {
+			alert('Error, debe volver a agendar su servicio o comunicarse');
+		}
+	}
 }

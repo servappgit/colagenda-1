@@ -215,7 +215,7 @@ export class BookingComponent implements OnInit {
 
 	public bussinesServiceFactura() {
 		this.bussinesService.horasTotal = 0;
-		this.bussinesService.horasTotal = Number(this.bussinesService.spaceAreaTime) + Number(this.bussinesService.lavadoPlatosTime) + Number(this.bussinesService.cocinarTime) + Number(this.bussinesService.desks) + Number(this.bussinesService.officeCleanUp);
+		this.bussinesService.horasTotal = Number(this.bussinesService.spaceAreaTime) + Number(this.bussinesService.lavadoPlatosTime) + Number(this.bussinesService.cocinarTime) + Number(this.bussinesService.desks) + Number(this.bussinesService.officeCleanUp) + Number(this.bussinesService.bathroomsTime);
 		if (this.bussinesService.cleanInside == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 15; }
 		if (this.bussinesService.shopWindow == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 20; }
 		if (this.bussinesService.meetingRoom == true) { this.bussinesService.horasTotal = this.bussinesService.horasTotal + 20; }
