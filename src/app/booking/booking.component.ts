@@ -303,7 +303,6 @@ export class BookingComponent implements OnInit {
 			this.agendarHelper();
 		}
 		this.openCheckout()
-		this.router.navigate(['gracias']);
 	}
 
 	public agendarHelper() {
@@ -342,7 +341,8 @@ this.servicioAgendado = {
 			total: this.mostrarTotalPrice,
 			userid: this.usuarioActivo.id
 		}
-		console.log(this.servicioAgendado)
+		console.log(this.servicioAgendado);
+		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
 		//this.guardarServicio(this.servicioAgendado)
 	}
 
@@ -387,7 +387,8 @@ this.servicioAgendado = {
 		if (this.bussinesService.cocinarTime > 0) {this.servicioAgendado.cafeteria = true}
 		if (this.bussinesService.meetingRoom == true) {this.servicioAgendado.reunion = true}
 		if (this.bussinesService.shopWindow == true) {this.servicioAgendado.limpiezaEstanteria = true}
-		console.log(this.servicioAgendado)
+		console.log(this.servicioAgendado);
+		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
 		//this.guardarServicio(this.servicioAgendado)
 	}
 
@@ -434,7 +435,8 @@ this.servicioAgendado = {
 		}
 		if (this.homeService.lavadoRopaTime > 0) {this.servicioAgendado.lavado = true}
 		if (this.homeService.planchadoTime > 0) {this.servicioAgendado.planchado = true}
-		console.log(this.servicioAgendado)
+		console.log(this.servicioAgendado);
+		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
 //		this.guardarServicio(this.servicioAgendado)
 	}
 
@@ -475,6 +477,7 @@ this.servicioAgendado = {
 			userid: this.usuarioActivo.id
 		}
 		console.log(this.servicioAgendado)
+		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
 		//this.guardarServicio(this.servicioAgendado)
 	}
 
@@ -491,11 +494,11 @@ this.servicioAgendado = {
 			//Parametros compra (obligatorio) 
 			invoice: "12415336363",
 			currency: "cop",
-			name: "Plan de facturacion electronica",
-			description: "Plan de facturacion electronica",
+			name: this.selectedService,
+			description: this.selectedService,
 			tax_base: '0',
 			tax: '0',
-			amount: 40000,
+			amount: this.servicioAgendado.precio,
 			country: "co",
 			lang: "es",
 			external: "false",
@@ -507,17 +510,17 @@ this.servicioAgendado = {
 			extra3: '',
 
 			//Atributos cliente
-			name_billing: "Andres Perez",
-			address_billing: "Carrera 19 numero 14 91",
+			name_billing: this.usuarioActivo.name,
+			address_billing: this.servicioAgendado.direccion,
 			type_doc_billing: "cc",
-			mobilephone_billing: "3050000000",
-			number_doc_billing: "100000000",
+			mobilephone_billing: this.usuarioActivo.telefono,
+			number_doc_billing: "12345678910",
   
 		   //atributo deshabilitación metodo de pago
 			//methodsDisable: ["TDC", "PSE","SP","CASH","DP"],
 
 			response: "http://localhost:4200/response",
-			confirmation: "http://localhost:4200/confirmation",
+			confirmation: "http://localhost:4200/gracias",
 		  }
 		  /*
 		var data={
