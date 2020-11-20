@@ -310,6 +310,7 @@ export class BookingComponent implements OnInit {
 		this.helperService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
 this.servicioAgendado = {
+	servicio: this.selectedService,
 			adulto: this.helperService.adulto,
 			reunion: this.helperService.eventos,
 			niños: this.helperService.menor,
@@ -345,7 +346,7 @@ this.servicioAgendado = {
 		}
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-		//this.guardarServicio(this.servicioAgendado)
+this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarBusinessCleaning() {
@@ -353,6 +354,7 @@ this.servicioAgendado = {
 		this.bussinesService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
+			servicio: this.selectedService,
 			limpieza: true,
 			adulto: this.helperService.adulto,
 			reunion: this.helperService.eventos,
@@ -393,7 +395,7 @@ this.servicioAgendado = {
 		if (this.bussinesService.shopWindow == true) {this.servicioAgendado.limpiezaEstanteria = true}
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-		//this.guardarServicio(this.servicioAgendado)
+	this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarHomeCleaning() {
@@ -401,6 +403,7 @@ this.servicioAgendado = {
 		this.homeService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
+			servicio: this.selectedService,
 			limpieza: true,
 			adulto: this.helperService.adulto,
 			reunion: this.helperService.eventos,
@@ -443,7 +446,8 @@ this.servicioAgendado = {
 		if (this.homeService.planchadoTime > 0) {this.servicioAgendado.planchado = true}
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-//		this.guardarServicio(this.servicioAgendado)
+		
+this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarDisinfection() {
@@ -451,6 +455,7 @@ this.servicioAgendado = {
 		this.disinfectionService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
 		this.servicioAgendado = {
+			servicio: this.selectedService,
 			adulto: this.helperService.adulto,
 			reunion: this.helperService.eventos,
 			niños: this.helperService.menor,
@@ -485,8 +490,8 @@ this.servicioAgendado = {
 			userid: this.usuarioActivo.id
 		}
 		console.log(this.servicioAgendado)
-		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-		//this.guardarServicio(this.servicioAgendado)
+		localStorage.setItem("servicioAgendado", JSON.stringify(this.servicioAgendado));
+		this.guardarServicio(this.servicioAgendado)
 	}
 
 	public guardarServicio(servicio) {
@@ -500,7 +505,7 @@ this.servicioAgendado = {
 	public openCheckout(){
 		var data={ 
 			//Parametros compra (obligatorio) 
-			invoice: "12415336363",
+			invoice: Date.now(),
 			currency: "cop",
 			name: this.selectedService,
 			description: this.selectedService,
@@ -522,7 +527,7 @@ this.servicioAgendado = {
 			address_billing: this.servicioAgendado.direccion,
 			type_doc_billing: "cc",
 			mobilephone_billing: this.usuarioActivo.telefono,
-			number_doc_billing: "12345678910",
+			number_doc_billing: this.usuarioActivo.documento,
   
 		   //atributo deshabilitación metodo de pago
 			//methodsDisable: ["TDC", "PSE","SP","CASH","DP"],
