@@ -13,7 +13,7 @@ import { serviceService } from '../services/service.service';
 export class ResponseComponent implements OnInit {
 	refPayco: string = ''
   transactionResponse:any ;
-  servicioAgendado:any ;
+  public servicioAgendado: any = {};
   params :any ;
   constructor(
   private epaycoService: EpaycoService,
@@ -21,7 +21,7 @@ export class ResponseComponent implements OnInit {
   private authService: AuthService,
   private ServicioService: serviceService
 
-  ) { }
+  ) { this.servicioAgendado= JSON.parse(localStorage.getItem('servicioAgendado')); }
 
   ngOnInit() {
 	this.activatedRoute.queryParams.subscribe(params => {
@@ -29,13 +29,13 @@ export class ResponseComponent implements OnInit {
        this.params = params
        console.log(params);
 
-       this.servicioAgendado = this.authService.storeGetUserData('servicioAgendado');
+       //this.servicioAgendado = this.authService.storeGetUserData('servicioAgendado');
   console.log(this.servicioAgendado)
   // añadimos las propiedades del checkout y mandamos el servicio a la base de datos como orden de servicio
-  this.servicioAgendado.referenciaPago = this.params.x_id_invoice
-  this.servicioAgendado.referenciaEpaycoPago = this.params.x_ref_payco
-  this.servicioAgendado.estadoPago = this.params.x_transaction_state
-  this.servicioAgendado.fechaPago = this.params.x_transaction_date
+  this.servicioAgendado.referenciaPago = Number(this.params.x_id_invoice)
+  this.servicioAgendado.referenciaEpaycoPago = Number(this.params.x_ref_payco)
+  this.servicioAgendado.estadoPago = String(this.params.x_transaction_state)
+  this.servicioAgendado.fechaPago = String(this.params.x_transaction_date)
   console.log(this.servicioAgendado)
   this.ServicioService.guardarservicio(this.servicioAgendado);
   console.log("servicio subido a firebase")

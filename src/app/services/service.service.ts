@@ -57,7 +57,9 @@ export class serviceService {
 	}
 
 	public guardarservicio(servicio) {
-		return firebase.firestore().doc('servicios/' + servicio.id).set(Object.assign({}, servicio));
+	
+			return firebase.firestore().doc('servicios/' + servicio.id).set(servicio);
+		
 	}
 
 	public guardartransaccion(servicio) {
