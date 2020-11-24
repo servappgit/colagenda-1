@@ -532,8 +532,8 @@ this.guardarServicio(this.servicioAgendado)
 		   //atributo deshabilitación metodo de pago
 			//methodsDisable: ["TDC", "PSE","SP","CASH","DP"],
 
-			response: "http://localhost:4200/response",
-			confirmation: "http://localhost:4200/gracias",
+			response: "https://www.aseoadomicilio.com/response",
+			confirmation: "https://www.aseoadomicilio.com/gracias",
 		  }
 		  /*
 		var data={
